@@ -1,18 +1,10 @@
-import React from 'react';
-import logo from './logo.svg';
-import './Home.css';
-import { NavLink } from 'react-router';
+import styles from './Home.module.css';
 
 export default function Home() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <NavLink to='/test'>Go to test page</NavLink>
-      </header>
+    <div className={styles.home}>
+      <h1>Akash W. Shah</h1>
+      <h2>AwSky / AwSkies</h2>
     </div>
   );
 }

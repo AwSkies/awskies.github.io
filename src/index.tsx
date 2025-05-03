@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
+import NavBar from './NavBar';
 import Home from './Home';
-import Test from './Test';
+import About from './About';
 import PageNotFound from './PageNotFound';
 
 const root = ReactDOM.createRoot(
@@ -13,9 +14,10 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <BrowserRouter>
+      <NavBar />
       <Routes>
         <Route index element={<Home />} />
-        <Route path='test' element={<Test />} />
+        <Route path='about' element={<About />} />
         <Route path='*' element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>

@@ -1,0 +1,14 @@
+.navBar {
+    text-align: center;
+    position: sticky;
+    top: 0px;
+    background-color: #16181d;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    min-width: 100%;
+}
+
+.page {
+    padding: 10px;
+}
