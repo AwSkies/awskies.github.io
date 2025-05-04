@@ -15,11 +15,13 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <NavBar />
-      <Routes>
-        <Route index element={<Home />} />
-        <Route path='about' element={<About />} />
-        <Route path='*' element={<PageNotFound />} />
-      </Routes>
+      <div className='content'>
+        <Routes>
+          <Route index element={<Home />} />
+          <Route path='about' element={<About />} />
+          <Route path='*' element={<PageNotFound />} />
+        </Routes>
+      </div>
     </BrowserRouter>
   </React.StrictMode>
 );
