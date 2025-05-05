@@ -10,5 +10,5 @@ export default function About() {
       <NavLink to='/'>Go back to home</NavLink>
       <p>Alternatively, take a <Link to='/'>link</Link> back instead.</p>
     </div>
-  )
+  );
 }

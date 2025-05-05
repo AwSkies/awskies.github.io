@@ -10,5 +10,5 @@ export default function NavBar() {
         <NavLink to='portfolio' className={styles.page}>Portfolio</NavLink>
         <NavLink to='blog' className={styles.page}>Blog</NavLink>
     </nav>
-  )
+  );
 }
