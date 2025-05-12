@@ -7,7 +7,7 @@
     flex-direction: row;
     justify-content: space-evenly;
     min-width: 100%;
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 10px 10px #16181d;
 }
 
 .navLink {
