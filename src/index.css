@@ -5,10 +5,14 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #282c34;
+  background-color: #08090D;
   min-height: 100vh;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+a {
+  color: #48ACF0;
 }
 
 code {
