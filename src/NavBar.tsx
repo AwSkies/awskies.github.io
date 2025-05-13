@@ -4,11 +4,11 @@ import styles from "./NavBar.module.css"
 export default function NavBar() {
   return (
     <nav className={styles.navBar}>
-        <NavLink to='/' className={styles.navLink}>Home</NavLink>
-        <NavLink to='about' className={styles.navLink}>About</NavLink>
-        <NavLink to='experience' className={styles.navLink}>Experience</NavLink>
-        <NavLink to='portfolio' className={styles.navLink}>Portfolio</NavLink>
-        <NavLink to='blog' className={styles.navLink}>Blog</NavLink>
+        <NavLink to='/'>Home</NavLink>
+        <NavLink to='about'>About</NavLink>
+        <NavLink to='experience'>Experience</NavLink>
+        <NavLink to='portfolio'>Portfolio</NavLink>
+        <NavLink to='blog'>Blog</NavLink>
     </nav>
   );
 }

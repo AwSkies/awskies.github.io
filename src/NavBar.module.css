@@ -10,6 +10,6 @@
     box-shadow: 0 0 10px 10px #16181d;
 }
 
-.navLink {
+.navBar > * {
     padding: 10px;
 }
