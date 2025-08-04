@@ -7,6 +7,7 @@ import NavBar from './NavBar';
 import Home from './Home';
 import About from './About';
 import PageNotFound from './PageNotFound';
+import Blog from './Blog';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -18,6 +19,7 @@ root.render(
       <Routes>
         <Route index element={<Home />} />
         <Route path='about' element={<About />} />
+        <Route path='blog/*' element={<Blog />} />
         <Route path='*' element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>
