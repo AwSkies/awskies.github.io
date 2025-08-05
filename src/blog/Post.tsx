@@ -5,7 +5,7 @@ import Tag from "./Tag";
 
 export default function Post() {
   let parameters = useParams();
-  let post = posts.find((post) => post.name === parameters.name) ?? postNotFound
+  let post = posts.find((post) => post.name === parameters.name) ?? postNotFound;
 
   return (
     <div>

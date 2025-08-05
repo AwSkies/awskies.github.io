@@ -13,5 +13,5 @@ export default function PostInfo({ children }: { children: post }) {
         <p>{children.description}</p>
       </NavLink>
     </div>
-  )
+  );
 }

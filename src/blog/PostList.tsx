@@ -9,5 +9,5 @@ export default function PostList() {
     <div>
       {posts.map((post, i) => <PostInfo key={i}>{post}</PostInfo>)}
     </div>
-  )
+  );
 }
