@@ -1,14 +1,13 @@
-import { NavLink, useSearchParams } from "react-router";
-import { POST_PATH, TAGS, posts } from "./Posts";
+import { useSearchParams } from "react-router";
+import { TAGS, posts } from "./Posts";
+import PostInfo from "./PostInfo";
 
 export default function PostList() {
   let [searchParams, setSearchParams] = useSearchParams();
 
   return (
     <div>
-      <ul>
-        {posts.map((post, i) => <li key={i}><NavLink to={`${POST_PATH}/${post.name}`}>{post.title}</NavLink></li>)}
-      </ul>
+      {posts.map((post, i) => <PostInfo key={i}>{post}</PostInfo>)}
     </div>
   )
 }
