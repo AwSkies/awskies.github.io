@@ -3,7 +3,7 @@ import examplePost from "./posts/ExamplePost";
 
 const POST_PATH = 'post'
 
-const TAGS = ['art', 'video games', 'math', 'science'] as const;
+const TAGS = ['no tag', 'art', 'video games', 'math', 'science'] as const;
 type tag = (typeof TAGS)[number];
 
 type post = {
