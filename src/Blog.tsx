@@ -4,7 +4,7 @@ import contentStyles from "./Content.module.css"
 import { Route, Routes } from "react-router"
 import PostList from "./blog/PostList"
 import Post from "./blog/Post"
-import { POST_PATH, SEARCH_PATH } from "./blog/Posts"
+import { POST_PATH } from "./blog/Posts"
 import PageNotFound from "./PageNotFound"
 
 export default function Blog() {

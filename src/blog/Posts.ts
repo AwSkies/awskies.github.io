@@ -2,7 +2,6 @@ import { JSX } from "react"
 import examplePost from "./posts/ExamplePost";
 
 const POST_PATH = 'post'
-const SEARCH_PATH = 'search'
 
 type tag =
     | 'art'
@@ -20,4 +19,4 @@ type post = {
 
 const posts: post[] = [examplePost];
 
-export { POST_PATH, SEARCH_PATH, type tag, type post, posts };
+export { POST_PATH, type tag, type post, posts };
