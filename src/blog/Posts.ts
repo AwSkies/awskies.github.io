@@ -3,11 +3,8 @@ import examplePost from "./posts/ExamplePost";
 
 const POST_PATH = 'post'
 
-type tag =
-    | 'art'
-    | 'video games'
-    | 'math'
-    | 'science';
+const TAGS = ['art', 'video games', 'math', 'science'] as const;
+type tag = (typeof TAGS)[number];
 
 type post = {
     name: string,
@@ -19,4 +16,4 @@ type post = {
 
 const posts: post[] = [examplePost];
 
-export { POST_PATH, type tag, type post, posts };
+export { POST_PATH, TAGS, type tag, type post, posts };

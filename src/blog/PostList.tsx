@@ -1,5 +1,5 @@
 import { NavLink, useSearchParams } from "react-router";
-import { POST_PATH, posts } from "./Posts";
+import { POST_PATH, TAGS, posts } from "./Posts";
 
 export default function PostList() {
   let [searchParams, setSearchParams] = useSearchParams();

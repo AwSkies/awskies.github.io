@@ -1,0 +1,14 @@
+@import url(../colors.css);
+
+.tag {
+    background-color: var(--background-color-accent);
+    color: var(--text-color-accent);
+    --horizontal-pad: 10px;
+    --vertical-pad: 2px;
+    padding-left: var(--horizontal-pad);
+    padding-right: var(--horizontal-pad);
+    padding-top: var(--vertical-pad);
+    padding-bottom: var(--vertical-pad);
+    border-radius: 5px;
+    margin: 5px;
+}

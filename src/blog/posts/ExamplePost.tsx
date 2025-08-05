@@ -7,7 +7,7 @@ function ExamplePost() {
 const examplePost: post = {
   name: "example",
   title: "Example post",
-  tags: ['art'],
+  tags: ['art', 'math'],
   description: "Description",
   element: ExamplePost
 }
