@@ -1,0 +1,19 @@
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: #08090D;
+        --background-color-accent: #16181D;
+        --text-color: white;
+        --text-color-accent: #C4BBAF;
+        --text-color-link: #48ACF0;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --background-color: grey;
+        --background-color-accent: white;
+        --text-color: black;
+        --text-color-accent: #212121;
+        --text-color-link: #246189;
+    }
+}

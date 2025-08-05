@@ -1,3 +1,5 @@
+@import url(colors.css);
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,14 +7,14 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #08090D;
+  background-color: var(--background-color);
   min-height: 100vh;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: var(--text-color);
 }
 
 a {
-  color: #48ACF0;
+  color: var(--text-color-link);
 }
 
 code {

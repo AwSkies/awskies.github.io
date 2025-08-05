@@ -1,13 +1,15 @@
+@import url(colors.css);
+
 .navBar {
     text-align: center;
     position: sticky;
     top: 0px;
-    background-color: #16181d;
+    background-color: var(--background-color-accent);
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     min-width: 100%;
-    box-shadow: 0 0 10px 10px #16181d;
+    box-shadow: 0 0 10px 10px var(--background-color-accent);
 }
 
 .navBar > * {
