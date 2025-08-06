@@ -6,6 +6,8 @@ import Tag from "./Tag";
 import RemoveTag from "./RemoveTag";
 import styles from "./PostList.module.css";
 
+type TagMode = 'and' | 'or';
+
 const SEARCH_PARAM = "search";
 const TAG_PARAM = "tag";
 const TAG_MODE_PARAM = "tagMode"
@@ -15,7 +17,7 @@ const OR = 'or';
 export { SEARCH_PARAM, TAG_PARAM, TAG_MODE_PARAM, AND, OR }
 
 export default function PostList() {
-  let [searchParams, setSearchParams] = useSearchParams({ tag: [] as tag[], tagMode: 'and' });
+  let [searchParams, setSearchParams] = useSearchParams({ tag: [] as tag[], tagMode: 'and' as TagMode });
   let [tagSelection, setTagSelection] = useState<tag>('no tag');
 
   function editParam(action: (params: URLSearchParams) => void) {
@@ -23,6 +25,10 @@ export default function PostList() {
     action(newParams);
     setSearchParams(newParams);
   }
+
+  const search: string = searchParams.get(SEARCH_PARAM) ?? '';
+  const tags: tag[] = searchParams.getAll(TAG_PARAM) as tag[];
+  const tagMode: TagMode = searchParams.get(TAG_MODE_PARAM) as TagMode ?? 'and';
 
   return (
     <div className={styles.postList}>
@@ -36,7 +42,7 @@ export default function PostList() {
           editParam((p) => value === '' ? p.delete(SEARCH_PARAM) : p.set(SEARCH_PARAM, value));
         }} >
           <label htmlFor={SEARCH_PARAM}>Search</label>
-          <input name={SEARCH_PARAM} defaultValue={searchParams.get(SEARCH_PARAM) ?? ''} />
+          <input name={SEARCH_PARAM} defaultValue={search} />
           <input type="submit" value="Search" />
         </form>
       </div>
@@ -46,23 +52,23 @@ export default function PostList() {
           {TAGS.map((tag, i) => <option value={tag} key={i}>{tag}</option>)}
         </select>
         <button onClick={() => {
-          if (!searchParams.getAll(TAG_PARAM).includes(tagSelection)) {
+          if (!tags.includes(tagSelection)) {
             editParam((p) => p.append(TAG_PARAM, tagSelection));
           }
         }}>Add tag</button>
         <div className={styles.tagMode}>
-          <button disabled={searchParams.get(TAG_MODE_PARAM) === AND} onClick={() => editParam((p) => p.set(TAG_MODE_PARAM, AND))}>AND</button>
-          <button disabled={searchParams.get(TAG_MODE_PARAM) === OR} onClick={() => editParam((p) => p.set(TAG_MODE_PARAM, OR))}>OR</button>
+          <button disabled={tagMode === AND} onClick={() => editParam((p) => p.set(TAG_MODE_PARAM, AND))}>AND</button>
+          <button disabled={tagMode === OR} onClick={() => editParam((p) => p.set(TAG_MODE_PARAM, OR))}>OR</button>
         </div>
         <div className={styles.tags}>
-          {(searchParams.getAll(TAG_PARAM) as tag[]).map((tag, i) => <Tag key={i} tag={tag} handle={
+          {tags.map((tag, i) => <Tag key={i} tag={tag} handle={
             ({ tag }: { tag: tag }) => <RemoveTag tag={tag} editParam={editParam} />} />)}
         </div>
       </div>
       <div className={styles.posts}>
         {
           posts.filter( // Filter posts by title search query
-            (post) => post.title.toLowerCase().includes((searchParams.get(SEARCH_PARAM) ?? '').toLowerCase())
+            (post) => post.title.toLowerCase().includes((search).toLowerCase())
           ).filter( // Filter posts by tag search query
             (post) => {
               const tags = searchParams.getAll(TAG_PARAM) as tag[];
@@ -71,7 +77,7 @@ export default function PostList() {
                 return true;
               }
               const inclusions = tags.map((tag) => post.tags.includes(tag));
-              return searchParams.get(TAG_MODE_PARAM) === AND ? inclusions.every(x => x) : inclusions.some(x => x);
+              return tagMode === AND ? inclusions.every(x => x) : inclusions.some(x => x);
             }
           ).map( // Map posts to elements
             (post, i) => <PostInfo key={i}>{post}</PostInfo>
