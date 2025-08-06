@@ -15,6 +15,6 @@ const postNotFound: post = {
   tags: [],
   description: "The post you've typed in could not be found.",
   element: PostNotFound
-} 
+};
 
 export default postNotFound

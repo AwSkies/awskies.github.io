@@ -15,7 +15,7 @@ export { SEARCH_PARAM, TAG_PARAM, TAG_MODE_PARAM, AND, OR }
 
 export default function PostList() {
   let [searchParams, setSearchParams] = useSearchParams({ tag: [] as tag[], tagMode: 'and' });
-  let [tagSelection, setTagSelection] = useState<tag>('no tag')
+  let [tagSelection, setTagSelection] = useState<tag>('no tag');
 
   function editParam(action: (params: URLSearchParams) => void) {
     const newParams = new URLSearchParams(searchParams);
@@ -48,8 +48,7 @@ export default function PostList() {
           if (!searchParams.getAll(TAG_PARAM).includes(tagSelection)) {
             editParam((p) => p.append(TAG_PARAM, tagSelection));
           }
-        }
-        }>Add tag</button>
+        }}>Add tag</button>
         <div className={styles.tagMode}>
           <button disabled={searchParams.get(TAG_MODE_PARAM) === AND} onClick={() => editParam((p) => p.set(TAG_MODE_PARAM, AND))}>AND</button>
           <button disabled={searchParams.get(TAG_MODE_PARAM) === OR} onClick={() => editParam((p) => p.set(TAG_MODE_PARAM, OR))}>OR</button>

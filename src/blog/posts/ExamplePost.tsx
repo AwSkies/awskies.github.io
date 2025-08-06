@@ -10,6 +10,6 @@ const examplePost: post = {
   tags: ['art', 'math'],
   description: "Description",
   element: ExamplePost
-}
+};
 
 export default examplePost
