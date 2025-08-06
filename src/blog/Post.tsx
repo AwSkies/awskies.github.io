@@ -11,7 +11,7 @@ export default function Post() {
     <div>
       <h1>{post.title}</h1>
       <p>{post.description}</p>
-      {post.tags.map((tag, i) => <Tag key={i}>{tag}</Tag>)}
+      {post.tags.map((tag, i) => <Tag key={i} tag={tag} />)}
       {post.element()}
     </div>
   );
