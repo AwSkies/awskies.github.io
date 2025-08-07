@@ -10,10 +10,14 @@ type Post = {
     name: string,
     title: string,
     tags: Tag[],
+    date: Date,
+    revisionDate?: Date,
     description: string,
     element: () => JSX.Element
 };
 
-const posts: Post[] = [examplePost];
+const posts: Post[] = [
+    examplePost
+];
 
 export { POST_PATH, TAGS, type Tag as TagName, type Post, posts };

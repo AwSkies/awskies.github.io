@@ -1,0 +1,28 @@
+@import url(../content.css);
+
+.infoContainer {
+    width: 100%;
+    background-color: grey;
+}
+
+.info {
+    max-width: 850px;
+    height: 100%;
+    margin: auto;
+    display: grid;
+}
+
+.info h1 {
+    text-align: center;
+}
+
+.tags {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    flex-wrap: wrap;
+}
+
+.post {
+    padding: var(--content-padding);
+}
