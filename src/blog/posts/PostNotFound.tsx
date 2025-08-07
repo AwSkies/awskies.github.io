@@ -1,5 +1,5 @@
 import { NavLink } from "react-router"
-import { post } from "../Posts"
+import { Post } from "../Posts"
 
 function PostNotFound() {
   return (
@@ -9,7 +9,7 @@ function PostNotFound() {
   )
 }
 
-const postNotFound: post = {
+const postNotFound: Post = {
   name: 'postnotfound',
   title: "Post not found.",
   tags: [],

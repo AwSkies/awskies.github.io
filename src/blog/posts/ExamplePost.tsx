@@ -1,10 +1,10 @@
-import { type post } from "../Posts"
+import { type Post } from "../Posts"
 
 function ExamplePost() {
   return <p>Example post!</p>
 }
 
-const examplePost: post = {
+const examplePost: Post = {
   name: "example",
   title: "Example post",
   tags: ['art', 'math'],

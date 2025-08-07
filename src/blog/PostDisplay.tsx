@@ -3,7 +3,7 @@ import { posts } from "./Posts";
 import postNotFound from "./posts/PostNotFound";
 import Tag from "./Tag";
 
-export default function Post() {
+export default function PostDisplay() {
   let parameters = useParams();
   let post = posts.find((post) => post.name === parameters.name) ?? postNotFound;
 

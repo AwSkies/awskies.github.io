@@ -1,9 +1,9 @@
-import { post, POST_PATH } from "./Posts";
+import { Post, POST_PATH } from "./Posts";
 import styles from "./PostInfo.module.css"
 import Tag from "./Tag";
 import { NavLink } from "react-router";
 
-export default function PostInfo({ children }: { children: post }) {
+export default function PostInfo({ children }: { children: Post }) {
   return (
     <div className={styles.postInfo}>
       <h2><NavLink to={`${POST_PATH}/${children.name}`}>{children.title}</NavLink></h2>

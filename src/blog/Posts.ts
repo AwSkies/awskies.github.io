@@ -4,16 +4,16 @@ import examplePost from "./posts/ExamplePost";
 const POST_PATH = 'post'
 
 const TAGS = ['no tag', 'art', 'video games', 'math', 'science'] as const;
-type tag = (typeof TAGS)[number];
+type Tag = (typeof TAGS)[number];
 
-type post = {
+type Post = {
     name: string,
     title: string,
-    tags: tag[]
+    tags: Tag[],
     description: string,
     element: () => JSX.Element
 };
 
-const posts: post[] = [examplePost];
+const posts: Post[] = [examplePost];
 
-export { POST_PATH, TAGS, type tag, type post, posts };
+export { POST_PATH, TAGS, type Tag as TagName, type Post, posts };

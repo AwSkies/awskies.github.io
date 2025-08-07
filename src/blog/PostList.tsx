@@ -1,5 +1,5 @@
 import { useSearchParams } from "react-router";
-import { TAGS, tag, posts } from "./Posts";
+import { TAGS, TagName, posts } from "./Posts";
 import PostInfo from "./PostInfo";
 import { useState } from "react";
 import Tag from "./Tag";
@@ -17,8 +17,8 @@ const OR = 'or';
 export { SEARCH_PARAM, TAG_PARAM, TAG_MODE_PARAM, AND, OR }
 
 export default function PostList() {
-  let [searchParams, setSearchParams] = useSearchParams({ tag: [] as tag[], tagMode: 'and' as TagMode });
-  let [tagSelection, setTagSelection] = useState<tag>('no tag');
+  let [searchParams, setSearchParams] = useSearchParams({ tag: [] as TagName[], tagMode: 'and' as TagMode });
+  let [tagSelection, setTagSelection] = useState<TagName>('no tag');
 
   function editParam(action: (params: URLSearchParams) => void) {
     const newParams = new URLSearchParams(searchParams);
@@ -27,7 +27,7 @@ export default function PostList() {
   }
 
   const search: string = searchParams.get(SEARCH_PARAM) ?? '';
-  const tags: tag[] = searchParams.getAll(TAG_PARAM) as tag[];
+  const tags: TagName[] = searchParams.getAll(TAG_PARAM) as TagName[];
   const tagMode: TagMode = searchParams.get(TAG_MODE_PARAM) as TagMode ?? 'and';
 
   return (
@@ -48,7 +48,7 @@ export default function PostList() {
       </div>
       <div className={styles.tagSearch}>
         <label htmlFor={TAG_PARAM}>Tags</label>
-        <select id={TAG_PARAM} name={TAG_PARAM} value={tagSelection} onChange={(e) => setTagSelection(e.target.value as tag)}>
+        <select id={TAG_PARAM} name={TAG_PARAM} value={tagSelection} onChange={(e) => setTagSelection(e.target.value as TagName)}>
           {TAGS.map((tag, i) => <option value={tag} key={i}>{tag}</option>)}
         </select>
         <button onClick={() => {
@@ -62,7 +62,7 @@ export default function PostList() {
         </div>
         <div className={styles.tags}>
           {tags.map((tag, i) => <Tag key={i} tag={tag} handle={
-            ({ tag }: { tag: tag }) => <RemoveTag tag={tag} editParam={editParam} />} />)}
+            ({ tag }: { tag: TagName }) => <RemoveTag tag={tag} editParam={editParam} />} />)}
         </div>
       </div>
       <div className={styles.posts}>
@@ -71,7 +71,7 @@ export default function PostList() {
             (post) => post.title.toLowerCase().includes((search).toLowerCase())
           ).filter( // Filter posts by tag search query
             (post) => {
-              const tags = searchParams.getAll(TAG_PARAM) as tag[];
+              const tags = searchParams.getAll(TAG_PARAM) as TagName[];
               // Bypass this filter if no tag parameters are set
               if (tags.length === 0) {
                 return true;

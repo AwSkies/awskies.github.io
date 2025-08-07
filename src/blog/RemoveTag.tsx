@@ -1,11 +1,11 @@
 import classNames from "classnames";
-import { tag } from "./Posts";
+import { TagName } from "./Posts";
 import styles from "./RemoveTag.module.css";
 import { ReactComponent as TagMinus } from "../icons/tag-minus.svg";
 import tagIconStyles from "./TagIcon.module.css";
 import { TAG_PARAM } from "./PostList";
 
-export default function RemoveTag({ tag, editParam }: { tag: tag, editParam: (action: (params: URLSearchParams) => void) => void }) {
+export default function RemoveTag({ tag, editParam }: { tag: TagName, editParam: (action: (params: URLSearchParams) => void) => void }) {
   return (
     <div className={classNames(styles.removeTag, tagIconStyles.tagIcon)} onClick={
       () => editParam((p) => {
