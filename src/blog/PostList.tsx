@@ -43,6 +43,10 @@ export default function PostList() {
         }} >
           <label htmlFor={SEARCH_PARAM}>Search</label>
           <input name={SEARCH_PARAM} defaultValue={search} />
+          <button type='button' onClick={() => {
+            editParam((p) => p.delete(SEARCH_PARAM));
+            window.location.reload();
+          }}>Clear</button>
           <input type="submit" value="Search" />
         </form>
       </div>
