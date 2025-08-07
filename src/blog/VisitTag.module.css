@@ -1,9 +1,12 @@
+@import url(../colors.css);
+
 .visitTag {
-  color: inherit;
-  text-decoration: inherit;
+    /* Remove standard link formatting */
+    color: inherit;
+    text-decoration: inherit;
 }
 
 
 .visitTag:hover {
-    background-color: blue;
+    background-color: var(--text-color-link);
 }
