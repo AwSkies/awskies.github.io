@@ -1,0 +1,8 @@
+.tagList {
+    display: block;
+    overflow: wrap;
+}
+
+.tags {
+    display: inline-block;
+}

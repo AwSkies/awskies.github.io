@@ -6,9 +6,10 @@
     border-radius: 15px;
 }
 
-.postInfo h2 {
-    display: inline;
+.info h2 {
     padding-right: 15px;
-    margin-right: 15px;
-    border-right: 2px solid grey;
+}
+
+.info {
+    display: inline-block;
 }

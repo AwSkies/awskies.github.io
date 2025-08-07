@@ -2,9 +2,9 @@ import { useSearchParams } from "react-router";
 import { TAGS, TagName, posts } from "./Posts";
 import PostInfo from "./PostInfo";
 import { useState } from "react";
-import Tag from "./Tag";
 import RemoveTag from "./RemoveTag";
 import styles from "./PostList.module.css";
+import TagList from "./TagList";
 
 type TagMode = 'and' | 'or';
 
@@ -64,10 +64,7 @@ export default function PostList() {
           <button disabled={tagMode === AND} onClick={() => editParam((p) => p.set(TAG_MODE_PARAM, AND))}>AND</button>
           <button disabled={tagMode === OR} onClick={() => editParam((p) => p.set(TAG_MODE_PARAM, OR))}>OR</button>
         </div>
-        <div className={styles.tags}>
-          {tags.map((tag, i) => <Tag key={i} tag={tag} handle={
-            ({ tag }: { tag: TagName }) => <RemoveTag tag={tag} editParam={editParam} />} />)}
-        </div>
+        <TagList tags={tags} handle={({ tag }: { tag: TagName }) => <RemoveTag tag={tag} editParam={editParam} />} />
       </div>
       <div className={styles.posts}>
         {

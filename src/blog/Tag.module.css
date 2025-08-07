@@ -5,7 +5,7 @@
     display: inline-flex;
     flex-direction: row;
     align-items: stretch;
-    align-content: stretch;
+    align-content: center;
     overflow: hidden;
     background-color: var(--background-color-accent);
     color: var(--text-color-accent);
@@ -14,7 +14,7 @@
     margin: 5px;
 }
 
-.tag > * {
+.tag>* {
     padding-left: var(--horizontal-pad-tag);
     padding-right: var(--horizontal-pad-tag);
     padding-top: var(--vertical-pad);
