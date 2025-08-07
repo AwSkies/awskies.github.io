@@ -7,7 +7,7 @@ import { TAG_PARAM } from "./PostList";
 
 export default function RemoveTag({ tag, editParam }: { tag: TagName, editParam: (action: (params: URLSearchParams) => void) => void }) {
   return (
-    <div className={classNames(styles.removeTag, tagIconStyles.tagIcon)} onClick={
+    <button className={classNames(styles.removeTag, tagIconStyles.tagIcon)} onClick={
       () => editParam((p) => {
         /* 
          * Delete and reconstruct the parameters list minus the deleted tag.
@@ -25,6 +25,6 @@ export default function RemoveTag({ tag, editParam }: { tag: TagName, editParam:
       })
     }>
       <TagMinus />
-    </div>
+    </button>
   )
 }

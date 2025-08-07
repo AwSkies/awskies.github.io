@@ -7,10 +7,8 @@ import classNames from "classnames";
 
 export default function VisitTag({ tag }: { tag: TagName }) {
   return (
-    <div className={classNames(styles.visitTag, tagIconStyles.tagIcon)}>
-      <NavLink to={`/blog?tag=${tag}`}>
-        <TagIcon />
-      </NavLink>
-    </div>
+    <NavLink to={`/blog?tag=${tag}`} className={classNames(styles.visitTag, tagIconStyles.tagIcon)}>
+      <TagIcon />
+    </NavLink>
   )
 }

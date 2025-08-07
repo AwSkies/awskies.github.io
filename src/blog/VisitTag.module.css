@@ -1,3 +1,9 @@
 .visitTag {
+  color: inherit;
+  text-decoration: inherit;
+}
 
+
+.visitTag:hover {
+    background-color: blue;
 }

@@ -9,7 +9,7 @@ export default function Tag({ tag, handle }: { tag: TagName, handle?: ({ tag }: 
   return (
     <div className={styles.tag}>
       <Handle tag={tag} />
-      <span>{tag}</span>
+      <span className={styles.tagName}>{tag}</span>
     </div>
   );
 }
