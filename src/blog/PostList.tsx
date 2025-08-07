@@ -75,7 +75,6 @@ export default function PostList() {
             (post) => post.title.toLowerCase().includes((search).toLowerCase())
           ).filter( // Filter posts by tag search query
             (post) => {
-              const tags = searchParams.getAll(TAG_PARAM) as TagName[];
               // Bypass this filter if no tag parameters are set
               if (tags.length === 0) {
                 return true;
