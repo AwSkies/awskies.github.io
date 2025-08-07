@@ -1,5 +1,5 @@
 @import url(content.css);
 
-pageNotFound {
+.pageNotFound {
     padding: var(--content-padding);
 }
