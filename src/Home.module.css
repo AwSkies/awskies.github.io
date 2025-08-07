@@ -1,3 +1,5 @@
-.home {
+@import url(content.css);
 
+.home {
+    padding: var(--content-padding);
 }

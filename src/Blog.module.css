@@ -1,3 +1,5 @@
-.blog {
+@import url(content.css);
 
+.blog {
+    padding: var(--content-padding);
 }
