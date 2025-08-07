@@ -15,9 +15,7 @@ export default function TagList(
   return (
     <div className={classNames(styles.tagList, className)}>
       <span>{children ?? <b>Tags:</b>}</span>
-      <div className={styles.tags}>
-        {tags.map((tag, i) => <Tag key={i} handle={handle} tag={tag} />)}
-      </div>
+      {tags.map((tag, i) => <Tag key={i} handle={handle} tag={tag} />)}
     </div>
   )
 }

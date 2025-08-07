@@ -23,4 +23,5 @@
 
 .tagName {
     border-left: 2px dotted grey;
+    max-width: max-content;
 }

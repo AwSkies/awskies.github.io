@@ -1,8 +1,8 @@
 import { useParams } from "react-router";
 import { posts } from "./Posts";
 import postNotFound from "./posts/PostNotFound";
-import Tag from "./Tag";
 import styles from "./PostDisplay.module.css";
+import TagList from "./TagList";
 
 export default function PostDisplay() {
   let parameters = useParams();
@@ -14,10 +14,7 @@ export default function PostDisplay() {
         <div className={styles.info}>
           <h1>{post.title}</h1>
           <p>Posted <i>{post.date.toDateString()}</i>. Last revised <i>{post.revisionDate?.toDateString() ?? 'never'}</i>.</p>
-          <div className={styles.tags}>
-            <span><b>Tags:</b></span>
-            {post.tags.map((tag, i) => <Tag key={i} tag={tag} />)}
-          </div>
+          <TagList tags={post.tags} />
           <p>{post.description}</p>
         </div>
       </div>

@@ -5,3 +5,19 @@
     background-color: var(--background-color-accent);
     transition: background-color 100ms ease-in-out;
 }
+
+.tagIcon svg {
+    display: block;
+    height: 1em;
+    width: 1em;
+}
+
+.tagIcon button {
+    border: unset;
+    color: unset;
+    font-size: unset;
+}
+
+.tagIcon:hover {
+    cursor: pointer;
+}

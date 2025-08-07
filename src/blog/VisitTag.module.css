@@ -1,11 +1,10 @@
 @import url(../colors.css);
 
-.visitTag {
-    /* Remove standard link formatting */
-    color: inherit;
-    text-decoration: inherit;
+button.visitTag {
+    border: unset;
+    color: unset;
+    font-size: unset;
 }
-
 
 .visitTag:hover {
     background-color: var(--text-color-link);

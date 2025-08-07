@@ -1,9 +1,9 @@
 button.removeTag {
     border: unset;
     color: unset;
+    font-size: unset;
 }
 
 .removeTag:hover {
     background-color: red;
-    cursor: pointer;
 }
