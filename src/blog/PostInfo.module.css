@@ -6,10 +6,6 @@
     border-radius: 15px;
 }
 
-.info h2 {
-    padding-right: 15px;
-}
-
-.info {
-    display: inline-block;
+.metadata>* {
+    padding-right: 10px;
 }
