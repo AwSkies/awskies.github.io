@@ -1,5 +1,9 @@
 @import url(colors.css);
 
+:root {
+    --nav-bar-height: 2.25em;
+}
+
 .navBar {
     text-align: center;
     position: sticky;
@@ -10,6 +14,7 @@
     justify-content: space-evenly;
     min-width: 100%;
     box-shadow: 0 0 10px 10px var(--background-color-accent);
+    height: var(--nav-bar-height);
 }
 
 .navBar > * {

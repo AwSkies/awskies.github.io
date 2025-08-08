@@ -1,7 +1,25 @@
+@import url(../colors.css);
 @import url(../content.css);
+@import url(../NavBar.module.css);
 
 .postList {
+    display: flex;
+    flex-direction: row;
+    height: calc(100vh - var(--nav-bar-height));
+}
+
+/* Display splitscreen in vertical form on narrow displays */
+@media (max-width: 700px) {
+    .postList {
+        flex-direction: column;
+    }
+}
+
+.postList>* {
     padding: var(--content-padding);
+    flex: 50%;
+    overflow-y: auto;
+    box-sizing: border-box;
 }
 
 .search p {
