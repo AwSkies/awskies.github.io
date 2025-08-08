@@ -3,3 +3,16 @@
 .postList {
     padding: var(--content-padding);
 }
+
+.search p {
+    margin: 0;
+}
+
+.tagMode button {
+    background-color: red;
+}
+
+.tagMode button:disabled {
+    background-color: green;
+    color: unset;
+}

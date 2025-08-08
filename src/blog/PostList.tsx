@@ -46,61 +46,78 @@ export default function PostList() {
 
   return (
     <div className={styles.postList}>
-      <div className={styles.search}>
-        {/* Input is put inside a form to execute the search only when you press enter on the search box.
-            This is because updating the search live with each `onChange` call was very slow. */}
-        <form onSubmit={(e) => {
-          e.preventDefault();
-          handleStringInput(SEARCH_PARAM, ((e.target as HTMLFormElement)[SEARCH_PARAM] as HTMLInputElement).value);
-        }} >
-          <label htmlFor={SEARCH_PARAM}>Search</label>
-          <input name={SEARCH_PARAM} id={SEARCH_PARAM} defaultValue={search} />
-          <button type='button' onClick={() => {
-            editParam((p) => p.delete(SEARCH_PARAM));
-            window.location.reload();
-          }}>Clear</button>
-          <input type="submit" value="Search" />
-        </form>
-      </div>
-      <div className={styles.tagSearch}>
-        <label htmlFor={TAG_PARAM}>Tags</label>
-        <select id={TAG_PARAM} name={TAG_PARAM} value={tagSelection} onChange={(e) => setTagSelection(e.target.value as TagName)}>
-          {TAGS.map((tag, i) => <option value={tag} key={i}>{tag}</option>)}
-        </select>
-        <button onClick={() => {
-          if (!tags.includes(tagSelection)) {
-            editParam((p) => p.append(TAG_PARAM, tagSelection));
-          }
-        }}>Add tag</button>
-        <div className={styles.tagMode}>
-          <button disabled={tagMode === AND} onClick={() => editParam((p) => p.set(TAG_MODE_PARAM, AND))}>AND</button>
-          <button disabled={tagMode === OR} onClick={() => editParam((p) => p.set(TAG_MODE_PARAM, OR))}>OR</button>
+      <div className={styles.info}>
+        <div className={styles.desription}>
+          <h1>Blog</h1>
+          <p>I post about things that interest me.</p>
         </div>
-        <TagList tags={tags} handle={({ tag }: { tag: TagName }) => <RemoveTag tag={tag} editParam={editParam} />} />
-      </div>
-      <div className={styles.dateFilter}>
-        <label htmlFor={AFTER_PARAM}>After</label>
-        <input
-          name={AFTER_PARAM}
-          id={AFTER_PARAM}
-          type="date"
-          defaultValue={after}
-          min={dateToInputString(new Date(0))}
-          max={dateToInputString(beforeDate)}
-          onChange={(e) => handleStringInput(AFTER_PARAM, e.target.value)}
-        />
-        <label htmlFor={BEFORE_PARAM}>Before</label>
-        <input
-          name={BEFORE_PARAM}
-          id={BEFORE_PARAM}
-          type="date"
-          defaultValue={before}
-          min={dateToInputString(afterDate)}
-          max={dateToInputString(new Date(Date.now()))}
-          onChange={(e) => handleStringInput(BEFORE_PARAM, e.target.value)}
-        />
+        <fieldset className={styles.search}>
+          <legend><label htmlFor={SEARCH_PARAM}>Search</label></legend>
+          <div className={styles.searchBar}>
+            {/* Input is put inside a form to execute the search only when you press enter on the search box.
+            This is because updating the search live with each `onChange` call was very slow. */}
+            <form onSubmit={(e) => {
+              e.preventDefault();
+              handleStringInput(SEARCH_PARAM, ((e.target as HTMLFormElement)[SEARCH_PARAM] as HTMLInputElement).value);
+            }} >
+              <input name={SEARCH_PARAM} id={SEARCH_PARAM} defaultValue={search} />
+              <button type='button' onClick={() => {
+                editParam((p) => p.delete(SEARCH_PARAM));
+                window.location.reload();
+              }}>Clear</button>
+              <input type="submit" value="Search" />
+            </form>
+          </div>
+          <fieldset className={styles.filters}>
+            <legend>Filters</legend>
+            <fieldset className={styles.tagSearch}>
+              <legend><label htmlFor={TAG_PARAM}>Tag</label></legend>
+              <p>Filter posts by tag. AND mode searches for posts with all specified tags, and OR mode searches for all posts with any specified tags.</p>
+              <select id={TAG_PARAM} name={TAG_PARAM} value={tagSelection} onChange={(e) => setTagSelection(e.target.value as TagName)}>
+                {TAGS.map((tag, i) => <option value={tag} key={i}>{tag}</option>)}
+              </select>
+              <button onClick={() => {
+                if (!tags.includes(tagSelection)) {
+                  editParam((p) => p.append(TAG_PARAM, tagSelection));
+                }
+              }}>Add tag</button>
+              <div className={styles.tagMode}>
+                <button disabled={tagMode === AND} onClick={() => editParam((p) => p.set(TAG_MODE_PARAM, AND))}>AND</button>
+                <button disabled={tagMode === OR} onClick={() => editParam((p) => p.set(TAG_MODE_PARAM, OR))}>OR</button>
+              </div>
+              <div className={styles.tags}>
+                <TagList tags={tags} handle={({ tag }: { tag: TagName }) => <RemoveTag tag={tag} editParam={editParam} />} />
+              </div>
+            </fieldset>
+            <fieldset className={styles.dateFilter}>
+              <legend>Date</legend>
+              <p>Filter posts by date. Searches for posts between the specified dates.</p>
+              <label htmlFor={AFTER_PARAM}>After</label>
+              <input
+                name={AFTER_PARAM}
+                id={AFTER_PARAM}
+                type="date"
+                defaultValue={after}
+                min={dateToInputString(new Date(0))}
+                max={dateToInputString(beforeDate)}
+                onChange={(e) => handleStringInput(AFTER_PARAM, e.target.value)}
+              />
+              <label htmlFor={BEFORE_PARAM}>Before</label>
+              <input
+                name={BEFORE_PARAM}
+                id={BEFORE_PARAM}
+                type="date"
+                defaultValue={before}
+                min={dateToInputString(afterDate)}
+                max={dateToInputString(new Date(Date.now()))}
+                onChange={(e) => handleStringInput(BEFORE_PARAM, e.target.value)}
+              />
+            </fieldset>
+          </fieldset>
+        </fieldset>
       </div>
       <div className={styles.posts}>
+        <h2>Posts</h2>
         {
           posts.filter( // Filter posts by title search query
             (post) => post.title.toLowerCase().includes((search).toLowerCase())
