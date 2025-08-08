@@ -11,6 +11,8 @@ type TagMode = 'and' | 'or';
 const SEARCH_PARAM = "search";
 const TAG_PARAM = "tag";
 const TAG_MODE_PARAM = "tagMode"
+const AFTER_PARAM = "after";
+const BEFORE_PARAM = "before";
 const AND = 'and';
 const OR = 'or';
 
@@ -29,6 +31,18 @@ export default function PostList() {
   const search: string = searchParams.get(SEARCH_PARAM) ?? '';
   const tags: TagName[] = searchParams.getAll(TAG_PARAM) as TagName[];
   const tagMode: TagMode = searchParams.get(TAG_MODE_PARAM) as TagMode ?? 'and';
+  const after: string = searchParams.get(AFTER_PARAM) ?? '';
+  const before: string = searchParams.get(BEFORE_PARAM) ?? '';
+  const afterDate: Date = new Date(after === '' ? 0 : after);
+  const beforeDate: Date = new Date(before === '' ? Date.now() : before);
+
+  function dateToInputString(date: Date) {
+    return date.toISOString().slice(0, 10);
+  }
+
+  function handleStringInput(param: string, value: string) {
+    editParam((p) => value === '' ? p.delete(param) : p.set(param, value));
+  }
 
   return (
     <div className={styles.postList}>
@@ -37,12 +51,10 @@ export default function PostList() {
             This is because updating the search live with each `onChange` call was very slow. */}
         <form onSubmit={(e) => {
           e.preventDefault();
-          // Get new value of input box
-          const value = ((e.target as HTMLFormElement)[SEARCH_PARAM] as HTMLInputElement).value;
-          editParam((p) => value === '' ? p.delete(SEARCH_PARAM) : p.set(SEARCH_PARAM, value));
+          handleStringInput(SEARCH_PARAM, ((e.target as HTMLFormElement)[SEARCH_PARAM] as HTMLInputElement).value);
         }} >
           <label htmlFor={SEARCH_PARAM}>Search</label>
-          <input name={SEARCH_PARAM} defaultValue={search} />
+          <input name={SEARCH_PARAM} id={SEARCH_PARAM} defaultValue={search} />
           <button type='button' onClick={() => {
             editParam((p) => p.delete(SEARCH_PARAM));
             window.location.reload();
@@ -66,6 +78,28 @@ export default function PostList() {
         </div>
         <TagList tags={tags} handle={({ tag }: { tag: TagName }) => <RemoveTag tag={tag} editParam={editParam} />} />
       </div>
+      <div className={styles.dateFilter}>
+        <label htmlFor={AFTER_PARAM}>After</label>
+        <input
+          name={AFTER_PARAM}
+          id={AFTER_PARAM}
+          type="date"
+          defaultValue={after}
+          min={dateToInputString(new Date(0))}
+          max={dateToInputString(beforeDate)}
+          onChange={(e) => handleStringInput(AFTER_PARAM, e.target.value)}
+        />
+        <label htmlFor={BEFORE_PARAM}>Before</label>
+        <input
+          name={BEFORE_PARAM}
+          id={BEFORE_PARAM}
+          type="date"
+          defaultValue={before}
+          min={dateToInputString(afterDate)}
+          max={dateToInputString(new Date(Date.now()))}
+          onChange={(e) => handleStringInput(BEFORE_PARAM, e.target.value)}
+        />
+      </div>
       <div className={styles.posts}>
         {
           posts.filter( // Filter posts by title search query
@@ -79,6 +113,8 @@ export default function PostList() {
               const inclusions = tags.map((tag) => post.tags.includes(tag));
               return tagMode === AND ? inclusions.every(x => x) : inclusions.some(x => x);
             }
+          ).filter( // Filter posts by date
+            (post) => post.date >= afterDate && post.date <= beforeDate
           ).map( // Map posts to elements
             (post, i) => <PostInfo key={i}>{post}</PostInfo>
           )
