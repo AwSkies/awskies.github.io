@@ -19,7 +19,7 @@ const OR = 'or';
 export { SEARCH_PARAM, TAG_PARAM, TAG_MODE_PARAM, AND, OR }
 
 export default function PostList() {
-  let [searchParams, setSearchParams] = useSearchParams({ tag: [] as TagName[], tagMode: 'and' as TagMode });
+  let [searchParams, setSearchParams] = useSearchParams();
   let [tagSelection, setTagSelection] = useState<TagName>('no tag');
 
   function editParam(action: (params: URLSearchParams) => void) {
