@@ -68,8 +68,7 @@ export default function PostList() {
               <input type="submit" value="Search" />
             </form>
           </div>
-          <fieldset className={styles.filters}>
-            <legend>Filters</legend>
+          <div className={styles.filters}>
             <fieldset className={styles.tagSearch}>
               <legend><label htmlFor={TAG_PARAM}>Tag</label></legend>
               <p>Filter posts by tag. AND mode searches for posts with all specified tags, and OR mode searches for all posts with any specified tags.</p>
@@ -113,7 +112,7 @@ export default function PostList() {
                 onChange={(e) => handleStringInput(BEFORE_PARAM, e.target.value)}
               />
             </fieldset>
-          </fieldset>
+          </div>
         </fieldset>
       </div>
       <div className={styles.posts}>
