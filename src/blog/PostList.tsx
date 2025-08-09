@@ -79,8 +79,7 @@ export default function PostList() {
           </div>
           <div className={styles.filters}>
             <fieldset className={styles.tagSearch}>
-              <legend><label htmlFor={TAG_PARAM}>Tag</label></legend>
-              <p>Filter posts by tag. AND mode searches for posts with all specified tags, and OR mode searches for all posts with any specified tags.</p>
+              <legend><label htmlFor={TAG_PARAM}><abbr title="Filter posts their tags.">Tag</abbr></label></legend>
               <select id={TAG_PARAM} name={TAG_PARAM} value={tagSelection} onChange={(e) => setTagSelection(e.target.value as TagName)}>
                 {TAGS.map((tag, i) => <option value={tag} key={i}>{tag}</option>)}
               </select>
@@ -96,14 +95,14 @@ export default function PostList() {
                   checked={tagMode === ANY}
                   onChange={() => editParam((p) => p.set(TAG_MODE_PARAM, ANY))}
                 />
-                <label htmlFor={ANY}>Any</label>
+                <label htmlFor={ANY}><abbr title="Search for posts with ANY of the specified tags.">any</abbr></label>
                 <input
                   type="radio"
                   id={ALL}
                   checked={tagMode === ALL}
                   onChange={() => editParam((p) => p.set(TAG_MODE_PARAM, ALL))}
                 />
-                <label htmlFor={ALL}>All</label>
+                <label htmlFor={ALL}><abbr title="Search for posts with ALL specified tags.">all</abbr></label>
               </div>
               <div className={styles.tags}>
                 <TagList tags={tags} handle={({ tag }: { tag: TagName }) => <RemoveTag tag={tag} editParam={editParam} />} />

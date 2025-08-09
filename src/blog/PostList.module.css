@@ -41,6 +41,10 @@
     margin: 0;
 }
 
+.tagMode {
+    display: inline;
+}
+
 .tagMode button {
     background-color: red;
 }
