@@ -6,23 +6,23 @@ import RemoveTag from "./RemoveTag";
 import styles from "./PostList.module.css";
 import TagList from "./TagList";
 
-type TagMode = 'and' | 'or';
+type TagMode = 'any' | 'all';
 
 const SEARCH_PARAM = "search";
 const TAG_PARAM = "tag";
 const TAG_MODE_PARAM = "tagMode"
 const AFTER_PARAM = "after";
 const BEFORE_PARAM = "before";
-const AND = 'and';
-const OR = 'or';
+const ANY: TagMode = 'any';
+const ALL: TagMode = 'all';
 
 const SEARCH_DEFAULT = '';
 const TAG_SELECTION_DEFAULT: TagName = 'no tag';
-const TAG_MODE_DEFAULT = AND;
+const TAG_MODE_DEFAULT = ANY;
 const AFTER_DEFAULT = '';
 const BEFORE_DEFAULT = '';
 
-export { SEARCH_PARAM, TAG_PARAM, TAG_MODE_PARAM, AND, OR }
+export { SEARCH_PARAM, TAG_PARAM, TAG_MODE_PARAM, ANY, ALL}
 
 export default function PostList() {
   let [searchParams, setSearchParams] = useSearchParams();
@@ -90,8 +90,20 @@ export default function PostList() {
                 }
               }}>Add tag</button>
               <div className={styles.tagMode}>
-                <button disabled={tagMode === AND} onClick={() => editParam((p) => p.set(TAG_MODE_PARAM, AND))}>AND</button>
-                <button disabled={tagMode === OR} onClick={() => editParam((p) => p.set(TAG_MODE_PARAM, OR))}>OR</button>
+                <input
+                  type="radio"
+                  id={ANY}
+                  checked={tagMode === ANY}
+                  onChange={() => editParam((p) => p.set(TAG_MODE_PARAM, ANY))}
+                />
+                <label htmlFor={ANY}>Any</label>
+                <input
+                  type="radio"
+                  id={ALL}
+                  checked={tagMode === ALL}
+                  onChange={() => editParam((p) => p.set(TAG_MODE_PARAM, ALL))}
+                />
+                <label htmlFor={ALL}>All</label>
               </div>
               <div className={styles.tags}>
                 <TagList tags={tags} handle={({ tag }: { tag: TagName }) => <RemoveTag tag={tag} editParam={editParam} />} />
@@ -148,7 +160,7 @@ export default function PostList() {
                 return true;
               }
               const inclusions = tags.map((tag) => post.tags.includes(tag));
-              return tagMode === AND ? inclusions.every(x => x) : inclusions.some(x => x);
+              return tagMode === ALL ? inclusions.every(x => x) : inclusions.some(x => x);
             }
           ).filter( // Filter posts by date
             (post) => post.date >= afterDate && post.date <= beforeDate
