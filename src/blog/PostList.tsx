@@ -16,11 +16,21 @@ const BEFORE_PARAM = "before";
 const AND = 'and';
 const OR = 'or';
 
+const SEARCH_DEFAULT = '';
+const TAG_SELECTION_DEFAULT: TagName = 'no tag';
+const TAG_MODE_DEFAULT = AND;
+const AFTER_DEFAULT = '';
+const BEFORE_DEFAULT = '';
+
 export { SEARCH_PARAM, TAG_PARAM, TAG_MODE_PARAM, AND, OR }
 
 export default function PostList() {
   let [searchParams, setSearchParams] = useSearchParams();
-  let [tagSelection, setTagSelection] = useState<TagName>('no tag');
+  let [search, setSearch] = useState(searchParams.get(SEARCH_PARAM) ?? SEARCH_DEFAULT);
+  let [searchInput, setSearchInput] = useState(search);
+  let [tagSelection, setTagSelection] = useState<TagName>(TAG_SELECTION_DEFAULT);
+  let [after, setAfter] = useState(searchParams.get(AFTER_PARAM) ?? AFTER_DEFAULT);
+  let [before, setBefore] = useState(searchParams.get(BEFORE_PARAM) ?? BEFORE_DEFAULT);
 
   function editParam(action: (params: URLSearchParams) => void) {
     const newParams = new URLSearchParams(searchParams);
@@ -28,11 +38,8 @@ export default function PostList() {
     setSearchParams(newParams);
   }
 
-  const search: string = searchParams.get(SEARCH_PARAM) ?? '';
   const tags: TagName[] = searchParams.getAll(TAG_PARAM) as TagName[];
-  const tagMode: TagMode = searchParams.get(TAG_MODE_PARAM) as TagMode ?? 'and';
-  const after: string = searchParams.get(AFTER_PARAM) ?? '';
-  const before: string = searchParams.get(BEFORE_PARAM) ?? '';
+  const tagMode: TagMode = searchParams.get(TAG_MODE_PARAM) as TagMode ?? TAG_MODE_DEFAULT;
   const afterDate: Date = new Date(after === '' ? 0 : after);
   const beforeDate: Date = new Date(before === '' ? Date.now() : before);
 
@@ -58,12 +65,14 @@ export default function PostList() {
             This is because updating the search live with each `onChange` call was very slow. */}
             <form onSubmit={(e) => {
               e.preventDefault();
-              handleStringInput(SEARCH_PARAM, ((e.target as HTMLFormElement)[SEARCH_PARAM] as HTMLInputElement).value);
-            }} >
-              <input name={SEARCH_PARAM} id={SEARCH_PARAM} defaultValue={search} />
+              setSearch(searchInput);
+              handleStringInput(SEARCH_PARAM, searchInput);
+            }}>
+              <input name={SEARCH_PARAM} id={SEARCH_PARAM} value={searchInput} onChange={(e) => setSearchInput(e.target.value)} />
               <button type='button' onClick={() => {
-                editParam((p) => p.delete(SEARCH_PARAM));
-                window.location.reload();
+                setSearch(SEARCH_DEFAULT);
+                setSearchInput(SEARCH_DEFAULT);
+                handleStringInput(SEARCH_PARAM, SEARCH_DEFAULT);
               }}>Clear</button>
               <input type="submit" value="Search" />
             </form>
@@ -96,22 +105,34 @@ export default function PostList() {
                 name={AFTER_PARAM}
                 id={AFTER_PARAM}
                 type="date"
-                defaultValue={after}
+                value={after}
                 min={dateToInputString(new Date(0))}
                 max={dateToInputString(beforeDate)}
-                onChange={(e) => handleStringInput(AFTER_PARAM, e.target.value)}
+                onChange={(e) => {
+                  setAfter(e.target.value)
+                  handleStringInput(AFTER_PARAM, e.target.value);
+                }}
               />
               <label htmlFor={BEFORE_PARAM}>Before</label>
               <input
                 name={BEFORE_PARAM}
                 id={BEFORE_PARAM}
                 type="date"
-                defaultValue={before}
+                value={before}
                 min={dateToInputString(afterDate)}
                 max={dateToInputString(new Date(Date.now()))}
-                onChange={(e) => handleStringInput(BEFORE_PARAM, e.target.value)}
+                onChange={(e) => {
+                  setBefore(e.target.value)
+                  handleStringInput(BEFORE_PARAM, e.target.value);
+                }}
               />
             </fieldset>
+            <button onClick={() => {
+              setTagSelection(TAG_SELECTION_DEFAULT);
+              setBefore(BEFORE_DEFAULT);
+              setAfter(AFTER_DEFAULT);
+              editParam((p) => [TAG_PARAM, TAG_MODE_PARAM, BEFORE_PARAM, AFTER_PARAM].forEach((param) => p.delete(param)))
+            }}>Clear filters</button>
           </div>
         </fieldset>
       </div>
