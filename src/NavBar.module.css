@@ -15,6 +15,7 @@
     min-width: 100%;
     box-shadow: 0 0 10px 10px var(--background-color-accent);
     height: var(--nav-bar-height);
+    z-index: 100;
 }
 
 .navBar > * {

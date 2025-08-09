@@ -15,8 +15,19 @@
     }
 }
 
+.posts {
+    background-color: grey;
+    z-index: 0;
+}
+
 .info {
-    box-shadow: 10px 0 10px black, 0 10px 10px black;
+    --shadow-length-info: 5px;
+    --shadow-spread-info: 2px;
+    box-shadow:
+        /* Two box shadows, one for horizontal layout and one for vertical */
+        var(--shadow-length-info) 0 var(--shadow-length-info) var(--shadow-spread-info) black,
+        0 var(--shadow-length-info) var(--shadow-length-info) var(--shadow-spread-info) black;
+    z-index: 1;
 }
 
 .postList>* {
