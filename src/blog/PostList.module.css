@@ -44,12 +44,3 @@
 .tagMode {
     display: inline;
 }
-
-.tagMode button {
-    background-color: red;
-}
-
-.tagMode button:disabled {
-    background-color: green;
-    color: unset;
-}
