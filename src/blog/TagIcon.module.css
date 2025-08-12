@@ -1,5 +1,4 @@
 @import url(../colors.css);
-@import url(tag.css);
 
 .tagIcon {
     background-color: var(--background-color-accent);

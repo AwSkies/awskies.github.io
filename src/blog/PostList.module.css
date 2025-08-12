@@ -42,7 +42,22 @@
 }
 
 .tagMode {
+    display: inline-flex;
+    gap: 15px;
+    padding-inline: 10px;
+}
+
+.tagModeSelection {
     display: inline-block;
+}
+
+.tagModeSelection label>* {
+    display: inline-flex;
+    gap: 10px;
+}
+
+.tagModeSelection svg {
+    padding: 0;
 }
 
 .dateSelection {

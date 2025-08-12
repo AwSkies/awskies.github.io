@@ -28,8 +28,13 @@ svg {
   --size-svg: 1.25em;
   width: var(--size-svg);
   height: var(--size-svg);
+  padding-inline: 5px;
 }
 
 button, input, select {
   font-size: 0.75em;
+}
+
+button svg, input svg, select svg {
+  padding: unset;
 }

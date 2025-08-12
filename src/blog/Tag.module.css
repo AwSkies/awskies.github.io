@@ -1,5 +1,4 @@
 @import url(../colors.css);
-@import url(tag.css);
 
 .tag {
     display: inline-flex;
@@ -9,16 +8,13 @@
     overflow: hidden;
     background-color: var(--background-color-accent);
     color: var(--text-color-accent);
-    border-radius: var(--border-radius);
+    border-radius: 5px;
     border: 2px solid grey;
     margin: 5px;
 }
 
 .tag>* {
-    padding-left: var(--horizontal-pad-tag);
-    padding-right: var(--horizontal-pad-tag);
-    padding-top: var(--vertical-pad);
-    padding-bottom: var(--vertical-pad);
+    padding: 2px 7.5px;
 }
 
 .tagName {

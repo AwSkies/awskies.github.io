@@ -70,7 +70,7 @@ export default function PostList() {
           <p>I post about things that interest me.</p>
         </div>
         <fieldset className={styles.search}>
-          <legend><label htmlFor={SEARCH_PARAM}>Search <SearchIcon /></label></legend>
+          <legend><label htmlFor={SEARCH_PARAM}>Search<SearchIcon /></label></legend>
           <div className={styles.searchBar}>
             {/* Input is put inside a form to execute the search only when you press enter on the search box.
             This is because updating the search live with each `onChange` call was very slow. */}
@@ -90,7 +90,7 @@ export default function PostList() {
           </div>
           <div className={styles.filters}>
             <fieldset className={styles.tagFilter}>
-              <legend><label htmlFor={TAG_PARAM}><Tooltipped tooltip="Filter posts by their tags.">Tag <TagIcon /></Tooltipped></label></legend>
+              <legend><label htmlFor={TAG_PARAM}><Tooltipped tooltip="Filter posts by their tags.">Tag<TagIcon /></Tooltipped></label></legend>
               <select id={TAG_PARAM} name={TAG_PARAM} value={tagSelection} onChange={(e) => setTagSelection(e.target.value as TagName)}>
                 {TAGS.map((tag, i) => <option value={tag} key={i}>{tag}</option>)}
               </select>
@@ -100,31 +100,41 @@ export default function PostList() {
                 }
               }}><TagPlusIcon /></button>
               <div className={styles.tagMode}>
-                <input
-                  type="radio"
-                  id={ANY}
-                  checked={tagMode === ANY}
-                  onChange={() => editParam((p) => p.set(TAG_MODE_PARAM, ANY))}
-                />
-                <label htmlFor={ANY}>
-                  <Tooltipped tooltip="Search for posts with ANY of the specified tags. (Logical OR)">any (<OrIcon />)</Tooltipped>
-                </label>
-                <input
-                  type="radio"
-                  id={ALL}
-                  checked={tagMode === ALL}
-                  onChange={() => editParam((p) => p.set(TAG_MODE_PARAM, ALL))}
-                />
-                <label htmlFor={ALL}>
-                  <Tooltipped tooltip="Search for posts with ALL specified tags. (Logical AND)">all (<AndIcon />)</Tooltipped>
-                </label>
+                <div className={styles.tagModeSelection}>
+                  <input
+                    type="radio"
+                    id={ANY}
+                    checked={tagMode === ANY}
+                    onChange={() => editParam((p) => p.set(TAG_MODE_PARAM, ANY))}
+                  />
+                  <label htmlFor={ANY}>
+                    <Tooltipped tooltip="Search for posts with ANY of the specified tags. (Logical OR)">
+                      <span>any</span>
+                      <span>(<OrIcon />)</span>
+                    </Tooltipped>
+                  </label>
+                </div>
+                <div className={styles.tagModeSelection}>
+                  <input
+                    type="radio"
+                    id={ALL}
+                    checked={tagMode === ALL}
+                    onChange={() => editParam((p) => p.set(TAG_MODE_PARAM, ALL))}
+                  />
+                  <label htmlFor={ALL}>
+                    <Tooltipped tooltip="Search for posts with ALL specified tags. (Logical AND)">
+                      <span>all</span>
+                      <span>(<AndIcon />)</span>
+                    </Tooltipped>
+                  </label>
+                </div>
               </div>
               <div className={styles.tags}>
                 <TagList tags={tags} handle={({ tag }: { tag: TagName }) => <RemoveTag tag={tag} editParam={editParam} />} />
               </div>
             </fieldset>
             <fieldset className={styles.dateFilter}>
-              <legend><Tooltipped tooltip="Filter posts by the date they were posted.">Date <CalendarIcon /></Tooltipped></legend>
+              <legend><Tooltipped tooltip="Filter posts by the date they were posted.">Date<CalendarIcon /></Tooltipped></legend>
               <div className={styles.dateSelection}>
                 <label htmlFor={AFTER_PARAM}>
                   <Tooltipped tooltip="Search for posts made after this date."><CalendarDownIcon />After</Tooltipped>
@@ -165,7 +175,7 @@ export default function PostList() {
               setBefore(BEFORE_DEFAULT);
               setAfter(AFTER_DEFAULT);
               editParam((p) => [TAG_PARAM, TAG_MODE_PARAM, BEFORE_PARAM, AFTER_PARAM].forEach((param) => p.delete(param)))
-            }}><FilterOffIcon /> Clear filters</button>
+            }}><FilterOffIcon />Clear filters</button>
           </div>
         </fieldset>
       </div>
