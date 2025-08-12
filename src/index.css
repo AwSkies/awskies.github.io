@@ -29,3 +29,7 @@ svg {
   width: var(--size-svg);
   height: var(--size-svg);
 }
+
+button, input, select {
+  font-size: 0.75em;
+}
