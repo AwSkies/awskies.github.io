@@ -5,6 +5,15 @@ import { useState } from "react";
 import RemoveTag from "./RemoveTag";
 import styles from "./PostList.module.css";
 import TagList from "./TagList";
+import { ReactComponent as XIcon } from "../icons/x.svg";
+import { ReactComponent as SearchIcon } from "../icons/search.svg";
+import { ReactComponent as TagIcon } from "../icons/tag.svg";
+import { ReactComponent as TagPlusIcon } from "../icons/tag-plus.svg";
+import { ReactComponent as AndIcon } from "../icons/and.svg";
+import { ReactComponent as OrIcon } from "../icons/or.svg";
+import { ReactComponent as CalendarIcon } from "../icons/calendar.svg";
+import { ReactComponent as CalendarDownIcon } from "../icons/calendar-down.svg";
+import { ReactComponent as CalendarUpIcon } from "../icons/calendar-up.svg";
 
 type TagMode = 'any' | 'all';
 
@@ -22,7 +31,7 @@ const TAG_MODE_DEFAULT = ANY;
 const AFTER_DEFAULT = '';
 const BEFORE_DEFAULT = '';
 
-export { SEARCH_PARAM, TAG_PARAM, TAG_MODE_PARAM, ANY, ALL}
+export { SEARCH_PARAM, TAG_PARAM, TAG_MODE_PARAM, ANY, ALL }
 
 export default function PostList() {
   let [searchParams, setSearchParams] = useSearchParams();
@@ -59,7 +68,7 @@ export default function PostList() {
           <p>I post about things that interest me.</p>
         </div>
         <fieldset className={styles.search}>
-          <legend><label htmlFor={SEARCH_PARAM}>Search</label></legend>
+          <legend><label htmlFor={SEARCH_PARAM}>Search <SearchIcon /></label></legend>
           <div className={styles.searchBar}>
             {/* Input is put inside a form to execute the search only when you press enter on the search box.
             This is because updating the search live with each `onChange` call was very slow. */}
@@ -73,13 +82,13 @@ export default function PostList() {
                 setSearch(SEARCH_DEFAULT);
                 setSearchInput(SEARCH_DEFAULT);
                 handleStringInput(SEARCH_PARAM, SEARCH_DEFAULT);
-              }}>Clear</button>
-              <input type="submit" value="Search" />
+              }}><XIcon /></button>
+              <button type="submit"><SearchIcon /></button>
             </form>
           </div>
           <div className={styles.filters}>
-            <fieldset className={styles.tagSearch}>
-              <legend><label htmlFor={TAG_PARAM}><abbr title="Filter posts their tags.">Tag</abbr></label></legend>
+            <fieldset className={styles.tagFilter}>
+              <legend><label htmlFor={TAG_PARAM}><abbr tabIndex={0} title="Filter posts their tags.">Tag <TagIcon /></abbr></label></legend>
               <select id={TAG_PARAM} name={TAG_PARAM} value={tagSelection} onChange={(e) => setTagSelection(e.target.value as TagName)}>
                 {TAGS.map((tag, i) => <option value={tag} key={i}>{tag}</option>)}
               </select>
@@ -87,7 +96,7 @@ export default function PostList() {
                 if (!tags.includes(tagSelection)) {
                   editParam((p) => p.append(TAG_PARAM, tagSelection));
                 }
-              }}>Add tag</button>
+              }}><TagPlusIcon /></button>
               <div className={styles.tagMode}>
                 <input
                   type="radio"
@@ -95,48 +104,59 @@ export default function PostList() {
                   checked={tagMode === ANY}
                   onChange={() => editParam((p) => p.set(TAG_MODE_PARAM, ANY))}
                 />
-                <label htmlFor={ANY}><abbr title="Search for posts with ANY of the specified tags.">any</abbr></label>
+                <label htmlFor={ANY}>
+                  <abbr tabIndex={0} title="Search for posts with ANY of the specified tags. (Logical OR)">any (<OrIcon />)</abbr>
+                </label>
                 <input
                   type="radio"
                   id={ALL}
                   checked={tagMode === ALL}
                   onChange={() => editParam((p) => p.set(TAG_MODE_PARAM, ALL))}
                 />
-                <label htmlFor={ALL}><abbr title="Search for posts with ALL specified tags.">all</abbr></label>
+                <label htmlFor={ALL}>
+                  <abbr tabIndex={0} title="Search for posts with ALL specified tags. (Logical AND)">all (<AndIcon />)</abbr>
+                </label>
               </div>
               <div className={styles.tags}>
                 <TagList tags={tags} handle={({ tag }: { tag: TagName }) => <RemoveTag tag={tag} editParam={editParam} />} />
               </div>
             </fieldset>
             <fieldset className={styles.dateFilter}>
-              <legend>Date</legend>
-              <p>Filter posts by date. Searches for posts between the specified dates.</p>
-              <label htmlFor={AFTER_PARAM}>After</label>
-              <input
-                name={AFTER_PARAM}
-                id={AFTER_PARAM}
-                type="date"
-                value={after}
-                min={dateToInputString(new Date(0))}
-                max={dateToInputString(beforeDate)}
-                onChange={(e) => {
-                  setAfter(e.target.value)
-                  handleStringInput(AFTER_PARAM, e.target.value);
-                }}
-              />
-              <label htmlFor={BEFORE_PARAM}>Before</label>
-              <input
-                name={BEFORE_PARAM}
-                id={BEFORE_PARAM}
-                type="date"
-                value={before}
-                min={dateToInputString(afterDate)}
-                max={dateToInputString(new Date(Date.now()))}
-                onChange={(e) => {
-                  setBefore(e.target.value)
-                  handleStringInput(BEFORE_PARAM, e.target.value);
-                }}
-              />
+              <legend><abbr tabIndex={0} title="Filter posts by the date they were posted.">Date <CalendarIcon /></abbr></legend>
+              <div className={styles.dateSelection}>
+                <label htmlFor={AFTER_PARAM}>
+                  <abbr tabIndex={0} title="Search for posts made after this date."><CalendarDownIcon />After</abbr>
+                </label>
+                <input
+                  name={AFTER_PARAM}
+                  id={AFTER_PARAM}
+                  type="date"
+                  value={after}
+                  min={dateToInputString(new Date(0))}
+                  max={dateToInputString(beforeDate)}
+                  onChange={(e) => {
+                    setAfter(e.target.value)
+                    handleStringInput(AFTER_PARAM, e.target.value);
+                  }}
+                />
+              </div>
+              <div className={styles.dateSelection}>
+                <label htmlFor={BEFORE_PARAM}>
+                  <abbr tabIndex={0} title="Search for posts made before this date."><CalendarUpIcon />Before</abbr>
+                </label>
+                <input
+                  name={BEFORE_PARAM}
+                  id={BEFORE_PARAM}
+                  type="date"
+                  value={before}
+                  min={dateToInputString(afterDate)}
+                  max={dateToInputString(new Date(Date.now()))}
+                  onChange={(e) => {
+                    setBefore(e.target.value)
+                    handleStringInput(BEFORE_PARAM, e.target.value);
+                  }}
+                />
+              </div>
             </fieldset>
             <button onClick={() => {
               setTagSelection(TAG_SELECTION_DEFAULT);

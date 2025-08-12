@@ -21,3 +21,11 @@ a {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+/* Inline icons */
+svg {
+  vertical-align: text-bottom;
+  --size-svg: 1.25em;
+  width: var(--size-svg);
+  height: var(--size-svg);
+}
