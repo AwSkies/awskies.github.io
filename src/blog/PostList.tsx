@@ -15,6 +15,7 @@ import { ReactComponent as OrIcon } from "../icons/or.svg";
 import { ReactComponent as CalendarIcon } from "../icons/calendar.svg";
 import { ReactComponent as CalendarDownIcon } from "../icons/calendar-down.svg";
 import { ReactComponent as CalendarUpIcon } from "../icons/calendar-up.svg";
+import { ReactComponent as FilterOffIcon } from "../icons/filter-off.svg";
 
 type TagMode = 'any' | 'all';
 
@@ -164,7 +165,7 @@ export default function PostList() {
               setBefore(BEFORE_DEFAULT);
               setAfter(AFTER_DEFAULT);
               editParam((p) => [TAG_PARAM, TAG_MODE_PARAM, BEFORE_PARAM, AFTER_PARAM].forEach((param) => p.delete(param)))
-            }}>Clear filters</button>
+            }}><FilterOffIcon /> Clear filters</button>
           </div>
         </fieldset>
       </div>
