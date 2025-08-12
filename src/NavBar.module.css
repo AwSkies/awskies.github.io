@@ -18,6 +18,13 @@
     z-index: 100;
 }
 
-.navBar > * {
+.navBar>* {
     padding: 10px;
+}
+
+/* Hide text page names when the screen gets too small */
+@media (max-width: 700px) {
+    .navBar span {
+        display: none;
+    }
 }
