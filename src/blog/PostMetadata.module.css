@@ -1,9 +1,15 @@
-h2, p {
+.postMetadata p {
     margin: 10px;
     margin-bottom: 20px;
 }
 
+.date {
+    display: inline-flex;
+    flex-wrap: wrap;
+}
+
 .dateText {
     display: inline-flex;
+    flex-wrap: wrap;
     gap: 12.5px;
 }

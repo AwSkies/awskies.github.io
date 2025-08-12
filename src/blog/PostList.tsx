@@ -65,40 +65,40 @@ export default function PostList() {
   return (
     <div className={styles.postList}>
       <div className={styles.info}>
+        <h1 className={styles.blogTitle}>Blog</h1>
         <div className={styles.desription}>
-          <h1>Blog</h1>
           <p>I post about things that interest me.</p>
         </div>
         <fieldset className={styles.search}>
           <legend><label htmlFor={SEARCH_PARAM}>Search<SearchIcon /></label></legend>
-          <div className={styles.searchBar}>
-            {/* Input is put inside a form to execute the search only when you press enter on the search box.
+          {/* Input is put inside a form to execute the search only when you press enter on the search box.
             This is because updating the search live with each `onChange` call was very slow. */}
-            <form onSubmit={(e) => {
-              e.preventDefault();
-              setSearch(searchInput);
-              handleStringInput(SEARCH_PARAM, searchInput);
-            }}>
-              <input name={SEARCH_PARAM} id={SEARCH_PARAM} value={searchInput} onChange={(e) => setSearchInput(e.target.value)} />
-              <button type='button' onClick={() => {
-                setSearch(SEARCH_DEFAULT);
-                setSearchInput(SEARCH_DEFAULT);
-                handleStringInput(SEARCH_PARAM, SEARCH_DEFAULT);
-              }}><XIcon /></button>
-              <button type="submit"><SearchIcon /></button>
-            </form>
-          </div>
+          <form className={styles.searchBar} onSubmit={(e) => {
+            e.preventDefault();
+            setSearch(searchInput);
+            handleStringInput(SEARCH_PARAM, searchInput);
+          }}>
+            <input name={SEARCH_PARAM} id={SEARCH_PARAM} value={searchInput} onChange={(e) => setSearchInput(e.target.value)} />
+            <button type='button' onClick={() => {
+              setSearch(SEARCH_DEFAULT);
+              setSearchInput(SEARCH_DEFAULT);
+              handleStringInput(SEARCH_PARAM, SEARCH_DEFAULT);
+            }}><XIcon /></button>
+            <button type="submit"><SearchIcon /></button>
+          </form>
           <div className={styles.filters}>
             <fieldset className={styles.tagFilter}>
               <legend><label htmlFor={TAG_PARAM}><Tooltipped tooltip="Filter posts by their tags.">Tag<TagIcon /></Tooltipped></label></legend>
-              <select id={TAG_PARAM} name={TAG_PARAM} value={tagSelection} onChange={(e) => setTagSelection(e.target.value as TagName)}>
-                {TAGS.map((tag, i) => <option value={tag} key={i}>{tag}</option>)}
-              </select>
-              <button onClick={() => {
-                if (!tags.includes(tagSelection)) {
-                  editParam((p) => p.append(TAG_PARAM, tagSelection));
-                }
-              }}><TagPlusIcon /></button>
+              <div className={styles.tagSelection}>
+                <select id={TAG_PARAM} name={TAG_PARAM} value={tagSelection} onChange={(e) => setTagSelection(e.target.value as TagName)}>
+                  {TAGS.map((tag, i) => <option value={tag} key={i}>{tag}</option>)}
+                </select>
+                <button onClick={() => {
+                  if (!tags.includes(tagSelection)) {
+                    editParam((p) => p.append(TAG_PARAM, tagSelection));
+                  }
+                }}><TagPlusIcon /></button>
+              </div>
               <div className={styles.tagMode}>
                 <div className={styles.tagModeSelection}>
                   <input
@@ -130,44 +130,46 @@ export default function PostList() {
                 </div>
               </div>
               <div className={styles.tags}>
-                <TagList tags={tags} handle={({ tag }: { tag: TagName }) => <RemoveTag tag={tag} editParam={editParam} />} />
+                <TagList tags={tags} className={styles.tagList} handle={({ tag }: { tag: TagName }) => <RemoveTag tag={tag} editParam={editParam} />} />
               </div>
             </fieldset>
             <fieldset className={styles.dateFilter}>
               <legend><Tooltipped tooltip="Filter posts by the date they were posted.">Date<CalendarIcon /></Tooltipped></legend>
-              <div className={styles.dateSelection}>
-                <label htmlFor={AFTER_PARAM}>
-                  <Tooltipped tooltip="Search for posts made after this date."><CalendarDownIcon />After</Tooltipped>
-                </label>
-                <input
-                  name={AFTER_PARAM}
-                  id={AFTER_PARAM}
-                  type="date"
-                  value={after}
-                  min={dateToInputString(new Date(0))}
-                  max={dateToInputString(beforeDate)}
-                  onChange={(e) => {
-                    setAfter(e.target.value)
-                    handleStringInput(AFTER_PARAM, e.target.value);
-                  }}
-                />
-              </div>
-              <div className={styles.dateSelection}>
-                <label htmlFor={BEFORE_PARAM}>
-                  <Tooltipped tooltip="Search for posts made before this date."><CalendarUpIcon />Before</Tooltipped>
-                </label>
-                <input
-                  name={BEFORE_PARAM}
-                  id={BEFORE_PARAM}
-                  type="date"
-                  value={before}
-                  min={dateToInputString(afterDate)}
-                  max={dateToInputString(new Date(Date.now()))}
-                  onChange={(e) => {
-                    setBefore(e.target.value)
-                    handleStringInput(BEFORE_PARAM, e.target.value);
-                  }}
-                />
+              <div className={styles.dates}>
+                <div className={styles.dateSelection}>
+                  <label htmlFor={AFTER_PARAM}>
+                    <Tooltipped tooltip="Search for posts made after this date."><CalendarDownIcon />After:</Tooltipped>
+                  </label>
+                  <input
+                    name={AFTER_PARAM}
+                    id={AFTER_PARAM}
+                    type="date"
+                    value={after}
+                    min={dateToInputString(new Date(0))}
+                    max={dateToInputString(beforeDate)}
+                    onChange={(e) => {
+                      setAfter(e.target.value)
+                      handleStringInput(AFTER_PARAM, e.target.value);
+                    }}
+                  />
+                </div>
+                <div className={styles.dateSelection}>
+                  <label htmlFor={BEFORE_PARAM}>
+                    <Tooltipped tooltip="Search for posts made before this date."><CalendarUpIcon />Before:</Tooltipped>
+                  </label>
+                  <input
+                    name={BEFORE_PARAM}
+                    id={BEFORE_PARAM}
+                    type="date"
+                    value={before}
+                    min={dateToInputString(afterDate)}
+                    max={dateToInputString(new Date(Date.now()))}
+                    onChange={(e) => {
+                      setBefore(e.target.value)
+                      handleStringInput(BEFORE_PARAM, e.target.value);
+                    }}
+                  />
+                </div>
               </div>
             </fieldset>
             <button onClick={() => {
@@ -180,25 +182,27 @@ export default function PostList() {
         </fieldset>
       </div>
       <div className={styles.posts}>
-        <h2>Posts</h2>
-        {
-          posts.filter( // Filter posts by title search query
-            (post) => post.title.toLowerCase().includes((search).toLowerCase())
-          ).filter( // Filter posts by tag search query
-            (post) => {
-              // Bypass this filter if no tag parameters are set
-              if (tags.length === 0) {
-                return true;
+        <h1 className={styles.postsTitle}>Posts</h1>
+        <div className={styles.list}>
+          {
+            posts.filter( // Filter posts by title search query
+              (post) => post.title.toLowerCase().includes((search).toLowerCase())
+            ).filter( // Filter posts by tag search query
+              (post) => {
+                // Bypass this filter if no tag parameters are set
+                if (tags.length === 0) {
+                  return true;
+                }
+                const inclusions = tags.map((tag) => post.tags.includes(tag));
+                return tagMode === ALL ? inclusions.every(x => x) : inclusions.some(x => x);
               }
-              const inclusions = tags.map((tag) => post.tags.includes(tag));
-              return tagMode === ALL ? inclusions.every(x => x) : inclusions.some(x => x);
-            }
-          ).filter( // Filter posts by date
-            (post) => post.date >= afterDate && post.date <= beforeDate
-          ).map( // Map posts to elements
-            (post, i) => <PostInfo key={i}>{post}</PostInfo>
-          )
-        }
+            ).filter( // Filter posts by date
+              (post) => post.date >= afterDate && post.date <= beforeDate
+            ).map( // Map posts to elements
+              (post, i) => <PostInfo key={i}>{post}</PostInfo>
+            )
+          }
+        </div>
       </div>
     </div>
   );
