@@ -1,4 +1,4 @@
-import { JSX } from "react";
+import { ReactNode } from "react";
 import { TagName } from "./Posts";
 import Tag, { TagHandle } from "./Tag";
 import styles from "./TagList.module.css";
@@ -9,7 +9,7 @@ export default function TagList(
     tags: TagName[],
     handle?: TagHandle,
     className?: string,
-    children?: JSX.Element | string
+    children?: ReactNode
   }
 ) {
   return (

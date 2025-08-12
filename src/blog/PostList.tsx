@@ -5,6 +5,7 @@ import { useState } from "react";
 import RemoveTag from "./RemoveTag";
 import styles from "./PostList.module.css";
 import TagList from "./TagList";
+import Tooltipped from "../Tooltipped";
 import { ReactComponent as XIcon } from "../icons/x.svg";
 import { ReactComponent as SearchIcon } from "../icons/search.svg";
 import { ReactComponent as TagIcon } from "../icons/tag.svg";
@@ -88,7 +89,7 @@ export default function PostList() {
           </div>
           <div className={styles.filters}>
             <fieldset className={styles.tagFilter}>
-              <legend><label htmlFor={TAG_PARAM}><abbr tabIndex={0} title="Filter posts their tags.">Tag <TagIcon /></abbr></label></legend>
+              <legend><label htmlFor={TAG_PARAM}><Tooltipped tooltip="Filter posts their tags.">Tag <TagIcon /></Tooltipped></label></legend>
               <select id={TAG_PARAM} name={TAG_PARAM} value={tagSelection} onChange={(e) => setTagSelection(e.target.value as TagName)}>
                 {TAGS.map((tag, i) => <option value={tag} key={i}>{tag}</option>)}
               </select>
@@ -105,7 +106,7 @@ export default function PostList() {
                   onChange={() => editParam((p) => p.set(TAG_MODE_PARAM, ANY))}
                 />
                 <label htmlFor={ANY}>
-                  <abbr tabIndex={0} title="Search for posts with ANY of the specified tags. (Logical OR)">any (<OrIcon />)</abbr>
+                  <Tooltipped tooltip="Search for posts with ANY of the specified tags. (Logical OR)">any (<OrIcon />)</Tooltipped>
                 </label>
                 <input
                   type="radio"
@@ -114,7 +115,7 @@ export default function PostList() {
                   onChange={() => editParam((p) => p.set(TAG_MODE_PARAM, ALL))}
                 />
                 <label htmlFor={ALL}>
-                  <abbr tabIndex={0} title="Search for posts with ALL specified tags. (Logical AND)">all (<AndIcon />)</abbr>
+                  <Tooltipped tooltip="Search for posts with ALL specified tags. (Logical AND)">all (<AndIcon />)</Tooltipped>
                 </label>
               </div>
               <div className={styles.tags}>
@@ -122,10 +123,10 @@ export default function PostList() {
               </div>
             </fieldset>
             <fieldset className={styles.dateFilter}>
-              <legend><abbr tabIndex={0} title="Filter posts by the date they were posted.">Date <CalendarIcon /></abbr></legend>
+              <legend><Tooltipped tooltip="Filter posts by the date they were posted.">Date <CalendarIcon /></Tooltipped></legend>
               <div className={styles.dateSelection}>
                 <label htmlFor={AFTER_PARAM}>
-                  <abbr tabIndex={0} title="Search for posts made after this date."><CalendarDownIcon />After</abbr>
+                  <Tooltipped tooltip="Search for posts made after this date."><CalendarDownIcon />After</Tooltipped>
                 </label>
                 <input
                   name={AFTER_PARAM}
@@ -142,7 +143,7 @@ export default function PostList() {
               </div>
               <div className={styles.dateSelection}>
                 <label htmlFor={BEFORE_PARAM}>
-                  <abbr tabIndex={0} title="Search for posts made before this date."><CalendarUpIcon />Before</abbr>
+                  <Tooltipped tooltip="Search for posts made before this date."><CalendarUpIcon />Before</Tooltipped>
                 </label>
                 <input
                   name={BEFORE_PARAM}

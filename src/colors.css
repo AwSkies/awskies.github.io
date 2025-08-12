@@ -1,5 +1,7 @@
 @media (prefers-color-scheme: dark) {
     :root {
+        --color-extreme-0: black;
+        --color-extreme-1: white;
         --background-color: #08090D;
         --background-color-accent: #16181D;
         --text-color: white;
@@ -10,6 +12,8 @@
 
 @media (prefers-color-scheme: light) {
     :root {
+        --color-extreme-0: white;
+        --color-extreme-1: black;
         --background-color: grey;
         --background-color-accent: white;
         --text-color: black;

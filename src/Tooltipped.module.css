@@ -1,0 +1,27 @@
+@import url(./colors.css);
+
+.tooltipped {
+    position: relative;
+    text-decoration: underline dotted;
+}
+
+.tooltipped[data-tooltip]:hover::after,
+.tooltipped[data-tooltip]:focus::after {
+    content: attr(data-tooltip);
+
+    /* position tooltip like the native one */
+    position: absolute;
+    left: 0;
+    bottom: -30px;
+    width: auto;
+    white-space: nowrap;
+    z-index: 99;
+
+    /* style tooltip */
+    background-color: var(--color-extreme-1);
+    color: var(--color-extreme-0);
+    border-radius: 3px;
+    box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.4);
+    font-size: 14px;
+    padding: 3px 5px;
+}
