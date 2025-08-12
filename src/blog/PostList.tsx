@@ -90,7 +90,7 @@ export default function PostList() {
           </div>
           <div className={styles.filters}>
             <fieldset className={styles.tagFilter}>
-              <legend><label htmlFor={TAG_PARAM}><Tooltipped tooltip="Filter posts their tags.">Tag <TagIcon /></Tooltipped></label></legend>
+              <legend><label htmlFor={TAG_PARAM}><Tooltipped tooltip="Filter posts by their tags.">Tag <TagIcon /></Tooltipped></label></legend>
               <select id={TAG_PARAM} name={TAG_PARAM} value={tagSelection} onChange={(e) => setTagSelection(e.target.value as TagName)}>
                 {TAGS.map((tag, i) => <option value={tag} key={i}>{tag}</option>)}
               </select>
