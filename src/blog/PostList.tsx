@@ -185,8 +185,11 @@ export default function PostList() {
         <h1 className={styles.postsTitle}>Posts</h1>
         <div className={styles.list}>
           {
-            posts.filter( // Filter posts by title search query
-              (post) => post.title.toLowerCase().includes((search).toLowerCase())
+            posts.filter( // Filter posts by search query
+              (post) => {
+                const query = search.toLowerCase();
+                return post.title.toLowerCase().includes(query) || post.description.toLowerCase().includes(query);
+              }
             ).filter( // Filter posts by tag search query
               (post) => {
                 // Bypass this filter if no tag parameters are set
