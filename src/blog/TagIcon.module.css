@@ -3,6 +3,11 @@
 .tagIcon {
     background-color: var(--background-color-accent);
     transition: background-color 100ms ease-in-out;
+    width: auto;
+    aspect-ratio: 1 / 1;
+    min-width: 0;
+    min-height: 0;
+    box-sizing: border-box;
 }
 
 .tagIcon svg {
