@@ -75,6 +75,14 @@
     padding: 0;
 }
 
+.tagFilterInputs {
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 10px;
+}
+
 .tagSelection {
     display: inline-flex;
     flex-direction: row;
@@ -84,7 +92,6 @@
     display: inline-flex;
     flex-wrap: wrap;
     gap: 15px;
-    padding-inline: 10px;
 }
 
 .tagModeSelection {
@@ -117,6 +124,7 @@
 .dateSelection {
     display: inline-flex;
     flex-wrap: wrap;
+    align-items: baseline;
     gap: 10px;
 }
 

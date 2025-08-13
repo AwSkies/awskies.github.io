@@ -119,44 +119,46 @@ export default function PostList() {
           <div className={styles.filters}>
             <fieldset className={styles.tagFilter}>
               <legend><label htmlFor={TAG_PARAM}><Tooltipped tooltip="Filter posts by their tags.">Tag<TagIcon /></Tooltipped></label></legend>
-              <div className={classNames(styles.tagSelection, styles.inputWithButtons)}>
-                <select id={TAG_PARAM} name={TAG_PARAM} value={tagSelection} onChange={(e) => setTagSelection(e.target.value as TagName)}>
-                  {TAGS.map((tag, i) => <option value={tag} key={i}>{tag}</option>)}
-                </select>
-                <button onClick={() => {
-                  if (!tags.includes(tagSelection)) {
-                    editParam((p) => p.append(TAG_PARAM, tagSelection));
-                  }
-                }}><TagPlusIcon /></button>
-              </div>
-              <div className={styles.tagMode}>
-                <div className={styles.tagModeSelection}>
-                  <input
-                    type="radio"
-                    id={ANY}
-                    checked={tagMode === ANY}
-                    onChange={() => editParam((p) => p.set(TAG_MODE_PARAM, ANY))}
-                  />
-                  <label htmlFor={ANY}>
-                    <Tooltipped tooltip="Search for posts with ANY of the specified tags. (Logical OR)">
-                      <span>any</span>
-                      <span>(<OrIcon />)</span>
-                    </Tooltipped>
-                  </label>
+              <div className={styles.tagFilterInputs}>
+                <div className={classNames(styles.tagSelection, styles.inputWithButtons)}>
+                  <select id={TAG_PARAM} name={TAG_PARAM} value={tagSelection} onChange={(e) => setTagSelection(e.target.value as TagName)}>
+                    {TAGS.map((tag, i) => <option value={tag} key={i}>{tag}</option>)}
+                  </select>
+                  <button onClick={() => {
+                    if (!tags.includes(tagSelection)) {
+                      editParam((p) => p.append(TAG_PARAM, tagSelection));
+                    }
+                  }}><TagPlusIcon /></button>
                 </div>
-                <div className={styles.tagModeSelection}>
-                  <input
-                    type="radio"
-                    id={ALL}
-                    checked={tagMode === ALL}
-                    onChange={() => editParam((p) => p.set(TAG_MODE_PARAM, ALL))}
-                  />
-                  <label htmlFor={ALL}>
-                    <Tooltipped tooltip="Search for posts with ALL specified tags. (Logical AND)">
-                      <span>all</span>
-                      <span>(<AndIcon />)</span>
-                    </Tooltipped>
-                  </label>
+                <div className={styles.tagMode}>
+                  <div className={styles.tagModeSelection}>
+                    <input
+                      type="radio"
+                      id={ANY}
+                      checked={tagMode === ANY}
+                      onChange={() => editParam((p) => p.set(TAG_MODE_PARAM, ANY))}
+                    />
+                    <label htmlFor={ANY}>
+                      <Tooltipped tooltip="Search for posts with ANY of the specified tags. (Logical OR)">
+                        <span>any</span>
+                        <span>(<OrIcon />)</span>
+                      </Tooltipped>
+                    </label>
+                  </div>
+                  <div className={styles.tagModeSelection}>
+                    <input
+                      type="radio"
+                      id={ALL}
+                      checked={tagMode === ALL}
+                      onChange={() => editParam((p) => p.set(TAG_MODE_PARAM, ALL))}
+                    />
+                    <label htmlFor={ALL}>
+                      <Tooltipped tooltip="Search for posts with ALL specified tags. (Logical AND)">
+                        <span>all</span>
+                        <span>(<AndIcon />)</span>
+                      </Tooltipped>
+                    </label>
+                  </div>
                 </div>
               </div>
               <div className={styles.tags}>
