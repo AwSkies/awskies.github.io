@@ -269,7 +269,7 @@ export default function PostList() {
               }
             ).filter( // Filter posts by date
               (post) => post.date >= afterDate && post.date <= beforeDate
-            ).sort(
+            ).sort( // Sort posts according to sorting mode
               (a, b) => {
                 const postCompare = () => {
                   switch (sort) {
@@ -281,6 +281,7 @@ export default function PostList() {
                       return b.title.localeCompare(a.title);
                   }
                 };
+                // Reverse sorting direction according to sort direction
                 return postCompare() * (sortDirection === DOWN ? 1 : -1);
               }
             ).map( // Map posts to elements
