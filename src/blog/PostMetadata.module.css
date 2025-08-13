@@ -3,6 +3,16 @@
     margin-bottom: 20px;
 }
 
+.truncate {
+    overflow: hidden;
+    display: -webkit-box;
+    --line-clamp-post-description: 5;
+    -webkit-line-clamp: var(--line-clamp-post-description);
+    line-clamp: var(--line-clamp-post-description);
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+}
+
 .date {
     display: inline-flex;
     flex-wrap: wrap;

@@ -29,23 +29,6 @@
     box-shadow: 0 0 7.5px 7.5px var(--background-color);
 }
 
-.postList h1.postsTitle {
-    background-color: grey;
-    box-shadow: 0 0 10px 10px grey;
-}
-
-.list {
-    margin-top: 30px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.posts {
-    background-color: grey;
-    z-index: 0;
-}
-
 .info {
     --shadow-length-info: 5px;
     --shadow-spread-info: 2px;
@@ -78,9 +61,17 @@
     flex: 0 0 auto;
 }
 
-.searchBar button, .tagSelection button {
-    width: 1.5em;
+.inputWithButtons {
+    display: inline-flex;
+    flex-direction: row;
+}
+
+.inputWithButtons button {
+    width: auto;
     aspect-ratio: 1 / 1;
+    min-width: 0;
+    min-height: 0;
+    box-sizing: border-box;
     padding: 0;
 }
 
@@ -127,4 +118,26 @@
     display: inline-flex;
     flex-wrap: wrap;
     gap: 10px;
+}
+
+.sortDisplay {
+    display: inline-block;
+}
+
+.posts {
+    background-color: grey;
+    z-index: 0;
+    position: relative;
+}
+
+.postList h1.postsTitle {
+    background-color: grey;
+    box-shadow: 0 0 10px 10px grey;
+}
+
+.list {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }

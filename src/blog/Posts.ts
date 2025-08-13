@@ -1,5 +1,7 @@
 import { JSX } from "react"
-import examplePost from "./posts/ExamplePost";
+import examplePost1 from "./posts/ExamplePost1";
+import examplePost2 from "./posts/ExamplePost2";
+import examplePost3 from "./posts/ExamplePost3";
 
 const POST_PATH = 'post'
 
@@ -17,7 +19,9 @@ type Post = {
 };
 
 const posts: Post[] = [
-    examplePost
+    examplePost1,
+    examplePost2,
+    examplePost3
 ];
 
 export { POST_PATH, TAGS, type Tag as TagName, type Post, posts };

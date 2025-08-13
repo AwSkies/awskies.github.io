@@ -3,7 +3,15 @@ import styles from "./PostMetadata.module.css"
 import TagList from "./TagList";
 import { ReactComponent as CalendarIcon } from "../icons/calendar.svg";
 
-export default function PostMetadata({ showRevision, children }: { showRevision?: boolean, children: Post }) {
+export default function PostMetadata(
+  {
+    showRevision, truncateDescription = false, children
+  }: {
+    showRevision?: boolean,
+    truncateDescription?: boolean,
+    children: Post
+  }
+) {
   return (
     <div className={styles.postMetadata}>
       <div className={styles.date}>
@@ -17,7 +25,7 @@ export default function PostMetadata({ showRevision, children }: { showRevision?
         <TagList tags={children.tags} className={styles.tagList} />
       </div>
       <hr />
-      <p>{children.description}</p>
+      <p className={truncateDescription ? styles.truncate : ''}>{children.description}</p>
     </div>
   );
 }
