@@ -6,10 +6,10 @@
     align-items: stretch;
     align-content: center;
     overflow: hidden;
-    background-color: var(--background-color-accent);
+    background-color: var(--color-accent-0);
     color: var(--text-color-accent);
     border-radius: 5px;
-    border: 2px solid grey;
+    border: 2px solid currentColor;
     margin: 5px;
 }
 
@@ -18,6 +18,6 @@
 }
 
 .tagName {
-    border-left: 2px dotted grey;
+    border-left: 2px dotted currentColor;
     max-width: max-content;
 }

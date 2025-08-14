@@ -1,23 +1,21 @@
-@media (prefers-color-scheme: dark) {
-    :root {
-        --color-extreme-0: black;
-        --color-extreme-1: white;
-        --background-color: #08090D;
-        --background-color-accent: #16181D;
-        --text-color: white;
-        --text-color-accent: #C4BBAF;
-        --text-color-link: #48ACF0;
-    }
-}
+:root {
+    color-scheme: light dark;
 
-@media (prefers-color-scheme: light) {
-    :root {
-        --color-extreme-0: white;
-        --color-extreme-1: black;
-        --background-color: grey;
-        --background-color-accent: white;
-        --text-color: black;
-        --text-color-accent: #212121;
-        --text-color-link: #246189;
-    }
+    --color-extreme-0: light-dark(#FFFFFF, #050A13);
+    --color-extreme-1: light-dark(#0B1E33, #F5F7FA);
+
+    /* Backgrounds */
+    --color-0: light-dark(#F4F8FB /* very light blue tint */, #0B1E33 /* deep blue */);
+    --color-1: light-dark(#E6E8EB /* soft warm gray */, #1E222A /* deep slate-charcoal */); 
+    --color-2: light-dark(#C8D9E6 /* pale steel-blue */, #1F4466 /* muted mid-blue-gray */);
+
+    /* Text */
+    --text-color: light-dark(#0B1E33, #E9EEF3);
+    --text-color-accent: light-dark(#212121, #0B1E33);
+    --text-color-link: light-dark(#1395EC, #48ACF0);
+    
+    /* Accents */
+    --color-accent-0: #4DB6AC; /* teal-green */
+    --color-accent-1: #FFB74D; /* amber-gold */
+    --color-accent-2: #F25F5C; /* coral red */
 }

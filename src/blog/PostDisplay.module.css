@@ -1,8 +1,9 @@
 @import url(../content.css);
+@import url(../colors.css);
 
 .infoContainer {
     width: 100%;
-    background-color: grey;
+    background-color: var(--color-2);
 }
 
 .info {

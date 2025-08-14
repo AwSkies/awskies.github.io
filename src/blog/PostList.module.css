@@ -25,8 +25,8 @@
 }
 
 .postList h1.blogTitle {
-    background-color: var(--background-color);
-    box-shadow: 0 0 7.5px 7.5px var(--background-color);
+    background-color: var(--color-0);
+    box-shadow: 0 0 7.5px 7.5px var(--color-0);
 }
 
 .info {
@@ -34,8 +34,8 @@
     --shadow-spread-info: 2px;
     box-shadow:
         /* Two box shadows, one for horizontal layout and one for vertical */
-        var(--shadow-length-info) 0 var(--shadow-length-info) var(--shadow-spread-info) black,
-        0 var(--shadow-length-info) var(--shadow-length-info) var(--shadow-spread-info) black;
+        var(--shadow-length-info) 0 var(--shadow-length-info) var(--shadow-spread-info) rgba(0, 0, 0, 0.35),
+        0 var(--shadow-length-info) var(--shadow-length-info) var(--shadow-spread-info) rgba(0, 0, 0, 0.35);
     z-index: 1;
 }
 
@@ -133,14 +133,14 @@
 }
 
 .posts {
-    background-color: grey;
+    background-color: var(--color-2);
     z-index: 0;
     position: relative;
 }
 
 .postList h1.postsTitle {
-    background-color: grey;
-    box-shadow: 0 0 10px 10px grey;
+    background-color: var(--color-2);
+    box-shadow: 0 0 10px 10px var(--color-2);
 }
 
 .list {
