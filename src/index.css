@@ -33,6 +33,10 @@ svg {
 
 button, input, select {
   font-size: 0.75em;
+  /* 
+  border: 2px solid var(--color-extreme-0);
+  border-radius: 5px;
+  */
 }
 
 button svg, input svg, select svg {
@@ -42,3 +46,14 @@ button svg, input svg, select svg {
 fieldset {
   border: 1px solid currentColor;
 }
+
+/* 
+button {
+  background-color: var(--color-accent-1);
+}
+
+input, select {
+  color: var(--text-color);
+  background-color: var(--color-2);
+} 
+*/

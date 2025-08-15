@@ -15,9 +15,13 @@ export default function TagList(
 ) {
   return (
     <div className={classNames(styles.tagList, className)}>
-      <TagsIcon />
-      <span>{children ?? <b>Tags:</b>}</span>
-      {tags.map((tag, i) => <Tag key={i} handle={handle} tag={tag} />)}
+      <div className={styles.label}>
+        <TagsIcon />
+        <span>{children ?? <b>Tags:</b>}</span>
+      </div>
+      <div className={styles.list}>
+        {tags.length !== 0 ? tags.map((tag, i) => <Tag key={i} handle={handle} tag={tag} />) : <i>None</i>}
+      </div>
     </div>
   )
 }

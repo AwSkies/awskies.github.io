@@ -16,10 +16,14 @@
 .date {
     display: inline-flex;
     flex-wrap: wrap;
+    gap: 0 15px;
+    padding-block: 0.5em;
 }
 
 .dateText {
     display: inline-flex;
     flex-wrap: wrap;
-    gap: 12.5px;
+    gap: 0 12.5px;
+    height: 1.5em;
+    align-content: center;
 }

@@ -10,7 +10,6 @@
     color: var(--text-color-accent);
     border-radius: 5px;
     border: 2px solid currentColor;
-    margin: 5px;
 }
 
 .tag>* {
