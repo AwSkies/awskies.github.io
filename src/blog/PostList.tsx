@@ -43,7 +43,7 @@ const UP: SortDirection = 'ascending';
 const DOWN: SortDirection = 'descending';
 
 const SEARCH_DEFAULT = '';
-const TAG_SELECTION_DEFAULT: TagName = 'no tag';
+const TAG_SELECTION_DEFAULT: TagName = TAGS[0];
 const TAG_MODE_DEFAULT = ANY;
 const AFTER_DEFAULT = '';
 const BEFORE_DEFAULT = '';
