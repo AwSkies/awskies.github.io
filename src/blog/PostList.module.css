@@ -66,6 +66,11 @@
     flex-direction: row;
 }
 
+.inputWithButtons {
+    --input-with-buttons-border-radius: 5px;
+    border-radius: 0;
+}
+
 .inputWithButtons button {
     width: auto;
     aspect-ratio: 1 / 1;
@@ -73,6 +78,22 @@
     min-height: 0;
     box-sizing: border-box;
     padding: 0;
+}
+
+.inputWithButtons>* {
+    border-radius: 0;
+}
+
+.inputWithButtons>*:first-child {
+    border-top-left-radius: var(--input-with-buttons-border-radius);
+    border-bottom-left-radius: var(--input-with-buttons-border-radius);
+    border-right: none;
+}
+
+.inputWithButtons>*:last-child {
+    border-top-right-radius: var(--input-with-buttons-border-radius);
+    border-bottom-right-radius: var(--input-with-buttons-border-radius);
+    border-left: none;
 }
 
 .tagFilterInputs {
