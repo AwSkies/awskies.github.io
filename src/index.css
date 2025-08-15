@@ -47,7 +47,17 @@ fieldset {
 
 button {
   background-color: var(--color-accent-1);
-  color: var(--text-color-accent)
+  color: var(--text-color-accent);
+  transition: background-color 100ms ease-in-out;
+  --button-color-blend: 30%;
+}
+
+button:hover {
+  background-color: color-mix(in srgb-linear, var(--color-accent-1), var(--color-extreme-1) var(--button-color-blend));
+}
+
+button:active {
+  background-color: color-mix(in srgb-linear, var(--color-accent-1), var(--color-extreme-0) var(--button-color-blend));
 }
 
 input, select {
