@@ -69,6 +69,7 @@
 .inputWithButtons {
     --input-with-buttons-border-radius: 5px;
     border-radius: 0;
+    height: 1.25em;
 }
 
 .inputWithButtons button {
