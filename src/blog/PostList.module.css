@@ -88,13 +88,15 @@
 .inputWithButtons>*:first-child {
     border-top-left-radius: var(--input-with-buttons-border-radius);
     border-bottom-left-radius: var(--input-with-buttons-border-radius);
-    border-right: none;
+}
+
+.inputWithButtons>*:not(:first-child) {
+    border-left: none;
 }
 
 .inputWithButtons>*:last-child {
     border-top-right-radius: var(--input-with-buttons-border-radius);
     border-bottom-right-radius: var(--input-with-buttons-border-radius);
-    border-left: none;
 }
 
 .tagFilterInputs {
