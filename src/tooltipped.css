@@ -1,12 +1,12 @@
 @import url(./colors.css);
 
-.tooltipped {
+[data-tooltip] {
     position: relative;
     text-decoration: underline dotted;
 }
 
-.tooltipped[data-tooltip]:hover::after,
-.tooltipped[data-tooltip]:focus::after {
+[data-tooltip]:hover::after,
+[data-tooltip]:focus::after {
     content: attr(data-tooltip);
 
     /* position tooltip like the native one */

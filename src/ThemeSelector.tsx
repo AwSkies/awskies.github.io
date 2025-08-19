@@ -9,7 +9,6 @@ import { ReactComponent as MonitorFilledIcon } from "./icons/device-desktop-fill
 import { ReactComponent as SquareIcon } from "./icons/square.svg";
 import { ReactComponent as SquareFilledIcon } from "./icons/square-filled.svg";
 import { ReactComponent as SunMoonIcon } from "./icons/sun-moon.svg";
-import Tooltipped from "./Tooltipped";
 
 const THEMES = ['default', 'system', 'dark', 'light'] as const;
 type Theme = (typeof THEMES)[number];
@@ -75,10 +74,9 @@ export default function ThemeSelector() {
                   className={styles.themeSelection}
                   onClick={() => { setTheme(t); localStorage.setItem(THEME_KEY, t); }}
                   disabled={themeOn} key={i}
+                  data-tooltip={THEME_INFO[t].tooltip}
                 >
-                  <Tooltipped tooltip={THEME_INFO[t].tooltip}>
                     {themeOn ? THEME_INFO[t].on : THEME_INFO[t].off}
-                  </Tooltipped>
                 </button>
               )
             }

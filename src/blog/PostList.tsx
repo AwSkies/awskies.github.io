@@ -5,7 +5,6 @@ import { useState } from "react";
 import RemoveTag from "./RemoveTag";
 import styles from "./PostList.module.css";
 import TagList from "./TagList";
-import Tooltipped from "../Tooltipped";
 import classNames from "classnames";
 import { ReactComponent as XIcon } from "../icons/x.svg";
 import { ReactComponent as SearchIcon } from "../icons/search.svg";
@@ -118,7 +117,7 @@ export default function PostList() {
           </form>
           <div className={styles.filters}>
             <fieldset className={styles.tagFilter}>
-              <legend><label htmlFor={TAG_PARAM}><Tooltipped tooltip="Filter posts by their tags.">Tag<TagIcon /></Tooltipped></label></legend>
+              <legend><label htmlFor={TAG_PARAM} data-tooltip="Filter posts by their tags." tabIndex={0}>Tag<TagIcon /></label></legend>
               <div className={styles.tagFilterInputs}>
                 <div className={classNames(styles.tagSelection, styles.inputWithButtons)}>
                   <select id={TAG_PARAM} name={TAG_PARAM} value={tagSelection} onChange={(e) => setTagSelection(e.target.value as TagName)}>
@@ -138,11 +137,9 @@ export default function PostList() {
                       checked={tagMode === ANY}
                       onChange={() => editParam((p) => p.set(TAG_MODE_PARAM, ANY))}
                     />
-                    <label htmlFor={ANY}>
-                      <Tooltipped tooltip="Search for posts with ANY of the specified tags. (Logical OR)">
-                        <span>any</span>
-                        <span>(<OrIcon />)</span>
-                      </Tooltipped>
+                    <label htmlFor={ANY} data-tooltip="Search for posts with ANY of the specified tags. (Logical OR)" tabIndex={0}>
+                      <span>any</span>
+                      <span>(<OrIcon />)</span>
                     </label>
                   </div>
                   <div className={styles.tagModeSelection}>
@@ -152,11 +149,9 @@ export default function PostList() {
                       checked={tagMode === ALL}
                       onChange={() => editParam((p) => p.set(TAG_MODE_PARAM, ALL))}
                     />
-                    <label htmlFor={ALL}>
-                      <Tooltipped tooltip="Search for posts with ALL specified tags. (Logical AND)">
-                        <span>all</span>
-                        <span>(<AndIcon />)</span>
-                      </Tooltipped>
+                    <label htmlFor={ALL} data-tooltip="Search for posts with ALL specified tags. (Logical AND)">
+                      <span>all</span>
+                      <span>(<AndIcon />)</span>
                     </label>
                   </div>
                 </div>
@@ -168,12 +163,10 @@ export default function PostList() {
               </div>
             </fieldset>
             <fieldset className={styles.dateFilter}>
-              <legend><Tooltipped tooltip="Filter posts by the date they were posted.">Date<CalendarIcon /></Tooltipped></legend>
+              <legend data-tooltip="Filter posts by the date they were posted." tabIndex={0}>Date<CalendarIcon /></legend>
               <div className={styles.dates}>
                 <div className={styles.dateSelection}>
-                  <label htmlFor={AFTER_PARAM}>
-                    <Tooltipped tooltip="Search for posts made after this date."><CalendarDownIcon />After:</Tooltipped>
-                  </label>
+                  <label htmlFor={AFTER_PARAM} data-tooltip="Search for posts made after this date." tabIndex={0}><CalendarDownIcon />After:</label>
                   <input
                     name={AFTER_PARAM}
                     id={AFTER_PARAM}
@@ -188,9 +181,7 @@ export default function PostList() {
                   />
                 </div>
                 <div className={styles.dateSelection}>
-                  <label htmlFor={BEFORE_PARAM}>
-                    <Tooltipped tooltip="Search for posts made before this date."><CalendarUpIcon />Before:</Tooltipped>
-                  </label>
+                  <label htmlFor={BEFORE_PARAM} data-tooltip="Search for posts made before this date." tabIndex={0}><CalendarUpIcon />Before:</label>
                   <input
                     name={BEFORE_PARAM}
                     id={BEFORE_PARAM}
@@ -215,7 +206,7 @@ export default function PostList() {
           </div>
         </fieldset>
         <fieldset className={styles.sort}>
-          <legend><label htmlFor={SORT_PARAM}><Tooltipped tooltip="Sort posts by their metadata.">Sort<ArrowsSortIcon /></Tooltipped></label></legend>
+          <legend><label htmlFor={SORT_PARAM} data-tooltip="Sort posts by their metadata." tabIndex={0}>Sort<ArrowsSortIcon /></label></legend>
           <div className={styles.sortDisplay}>
             <label htmlFor={SORT_PARAM}>{(() => {
               switch (sort) {
@@ -231,26 +222,30 @@ export default function PostList() {
               <select id={SORT_PARAM} value={sort} onChange={(e) => editParam((p) => p.set(SORT_PARAM, e.target.value))}>
                 {SORTS.map((s, i) => <option value={s} key={i}>{s}</option>)}
               </select>
-              <button onClick={() => editParam((p) => p.set(SORT_DIRECTION_PARAM, oppositeSortDirection(sortDirection)))}>
-                <Tooltipped tooltip={`Switch sort direction from ${sortDirection} to ${oppositeSortDirection(sortDirection)}`}>
-                  {(() => {
-                    switch (sort) {
-                      case 'post date':
-                      case 'revision date':
-                        return sortDirection === UP ? <SortAscendingNumbers /> : <SortDescendingNumbers />;
-                      case "alphabetical":
-                        return sortDirection === UP ? <SortAscendingLetters /> : <SortDescendingLetters />;
-                    }
-                  })()}
-                </Tooltipped>
+              <button
+                onClick={() => editParam((p) => p.set(SORT_DIRECTION_PARAM, oppositeSortDirection(sortDirection)))}
+                data-tooltip={`Switch sort direction from ${sortDirection} to ${oppositeSortDirection(sortDirection)}`}
+              >
+                {(() => {
+                  switch (sort) {
+                    case 'post date':
+                    case 'revision date':
+                      return sortDirection === UP ? <SortAscendingNumbers /> : <SortDescendingNumbers />;
+                    case "alphabetical":
+                      return sortDirection === UP ? <SortAscendingLetters /> : <SortDescendingLetters />;
+                  }
+                })()}
               </button>
-              <button onClick={() => editParam((p) => { p.delete(SORT_PARAM); p.delete(SORT_DIRECTION_PARAM); })}>
-                <Tooltipped tooltip="Clear sort options."><XIcon /></Tooltipped>
+              <button
+                onClick={() => editParam((p) => { p.delete(SORT_PARAM); p.delete(SORT_DIRECTION_PARAM); })}
+                data-tooltip="Clear sort options."
+              >
+                <XIcon />
               </button>
             </div>
           </div>
         </fieldset>
-      </div>
+      </div >
       <div className={styles.posts}>
         <h1 className={styles.postsTitle}>Posts</h1>
         <div className={styles.list}>
@@ -292,6 +287,6 @@ export default function PostList() {
           }
         </div>
       </div>
-    </div>
+    </div >
   );
 }
