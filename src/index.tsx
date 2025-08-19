@@ -8,10 +8,12 @@ import Home from './Home';
 import About from './About';
 import PageNotFound from './PageNotFound';
 import Blog from './Blog';
+import ThemeSelector from './ThemeSelector';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
 root.render(
   <React.StrictMode>
     <BrowserRouter>
@@ -22,6 +24,7 @@ root.render(
         <Route path='blog/*' element={<Blog />} />
         <Route path='*' element={<PageNotFound />} />
       </Routes>
+      <ThemeSelector />
     </BrowserRouter>
   </React.StrictMode>
 );

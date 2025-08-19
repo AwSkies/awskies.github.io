@@ -1,0 +1,52 @@
+@import url(./colors.css);
+
+.themeSelector {
+    color: var(--color-accent-0);
+    background-color: var(--color-2);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 20px;
+    z-index: 100;
+    padding: 10px;
+    border: 1px solid var(--color-accent-0);
+    border-radius: 100vh;
+    transition: width 500ms ease-in-out;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    box-shadow: 0 0 5px 5px rgb(from var(--color-accent-0) r g b / 0.3);
+}
+
+.themeSelector button {
+    width: auto;
+    aspect-ratio: 1 / 1;
+    min-width: 0;
+    min-height: 0;
+    border: none;
+    border-radius: 100vh;
+    background-color: transparent;
+    color: inherit;
+}
+
+.themeSelector button:hover {
+    background-color: var(--color-1);
+}
+
+.themeSelector button:not(:disabled):active {
+    background-color: color-mix(in srgb, var(--color-1), var(--color-extreme-1) 10%);
+}
+
+.themeSelector:not(:hover) .themeSelections {
+    display: none;
+}
+
+.themeSelector:hover .thumbnail {
+    display: none;
+}
+
+.themeSelections {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}

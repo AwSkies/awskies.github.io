@@ -52,11 +52,11 @@ button {
   --button-color-blend: 30%;
 }
 
-button:hover {
+button:hover:not(:disabled) {
   background-color: color-mix(in srgb-linear, var(--color-accent-1), var(--color-extreme-1) var(--button-color-blend));
 }
 
-button:active {
+button:active:not(:disabled) {
   background-color: color-mix(in srgb-linear, var(--color-accent-1), var(--color-extreme-0) var(--button-color-blend));
 }
 
