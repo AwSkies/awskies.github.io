@@ -2,24 +2,18 @@
 
 .tagIcon {
     background-color: var(--color-accent-0);
-    transition: background-color 100ms ease-in-out;
     width: auto;
     aspect-ratio: 1 / 1;
     min-width: 0;
     min-height: 0;
     box-sizing: border-box;
+    border-radius: unset;
 }
 
 .tagIcon svg {
     display: block;
     height: 1em;
     width: 1em;
-}
-
-.tagIcon button {
-    border: unset;
-    color: unset;
-    font-size: unset;
 }
 
 .tagIcon:hover {

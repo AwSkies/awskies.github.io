@@ -4,8 +4,9 @@ button.visitTag {
     border: unset;
     color: unset;
     font-size: unset;
+    transition: background-color 200ms ease-in-out;
 }
 
-.visitTag:hover {
+button.visitTag:hover {
     background-color: var(--text-color-link);
 }

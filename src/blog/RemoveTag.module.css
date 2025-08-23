@@ -4,8 +4,9 @@ button.removeTag {
     border: unset;
     color: unset;
     font-size: unset;
+    transition: background-color 200ms ease-in-out;
 }
 
-.removeTag:hover {
+button.removeTag:hover {
     background-color: var(--color-accent-2);
 }
