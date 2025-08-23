@@ -5,6 +5,10 @@
     text-decoration: underline dotted;
 }
 
+[data-tooltip] * {
+    text-decoration: underline dotted;
+}
+
 [data-tooltip]:hover::after,
 [data-tooltip]:focus::after {
     content: attr(data-tooltip);
