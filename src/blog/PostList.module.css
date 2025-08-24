@@ -122,12 +122,13 @@
     display: inline-block;
 }
 
-.tagModeSelection label>* {
+.tagModeSelection label {
     display: inline-flex;
     gap: 0 10px;
 }
 
 .tagModeSelection svg {
+    width: 1em;
     padding: 0;
 }
 
