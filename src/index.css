@@ -19,6 +19,10 @@ a {
   color: var(--text-color-link);
 }
 
+a:hover {
+  color: color-mix(in srgb, var(--text-color-link), var(--color-extreme-1) 30%)
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
