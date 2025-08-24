@@ -4,7 +4,7 @@ button.visitTag {
     border: unset;
     color: unset;
     font-size: unset;
-    transition: background-color 200ms ease-in-out;
+    transition: background-color 100ms ease-in-out;
 }
 
 button.visitTag:hover {
