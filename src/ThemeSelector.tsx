@@ -27,12 +27,12 @@ const THEME_INFO: { [K in Theme]: { on: ReactNode, off: ReactNode, tooltip: stri
   'system': {
     on: <MonitorFilledIcon />,
     off: <MonitorIcon />,
-    tooltip: "Use this page's default theme"
+    tooltip: "Use system theme"
   },
   'default': {
     on: <SquareFilledIcon />,
     off: <SquareIcon />,
-    tooltip: "Use system theme"
+    tooltip: "Use this page's default theme (Recommended)"
   }
 };
 
